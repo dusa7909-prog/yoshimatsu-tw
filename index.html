@@ -23,33 +23,33 @@
         header {
             background-color: #8c2c2c;
             color: white;
-            padding: 20px 0;
+            padding: 15px 0;
             text-align: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         
         .logo {
-            max-width: 200px;
-            margin: 0 auto 15px;
+            max-width: 150px;
+            margin: 0 auto 10px;
             display: block;
             border-radius: 8px;
         }
         
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 2rem;
+            margin-bottom: 8px;
         }
         
         .contact-info {
-            font-size: 1.1rem;
-            margin-top: 15px;
-            line-height: 1.8;
+            font-size: 1rem;
+            margin-top: 10px;
+            line-height: 1.6;
         }
         
         /* 導航欄 */
         nav {
             background-color: #4a1a1a;
-            padding: 15px 0;
+            padding: 12px 0;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -58,15 +58,53 @@
         nav a {
             color: white;
             text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.1rem;
-            padding: 8px 15px;
+            margin: 0 12px;
+            font-size: 1rem;
+            padding: 6px 12px;
             border-radius: 4px;
             transition: background-color 0.3s;
         }
         
         nav a:hover {
             background-color: #6b2b2b;
+        }
+        
+        /* 首頁 Banner（店門口照片） */
+        .banner {
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .banner-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.6));
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .banner-overlay h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            border: none;
+            color: white;
+            padding: 0;
+        }
+        
+        .banner-overlay p {
+            font-size: 1.2rem;
         }
         
         /* 主要內容 */
@@ -125,25 +163,54 @@
             font-weight: 500;
         }
         
-        /* 菜單照片展示 */
-        .menu-photos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+        /* 菜單滑動樣式 - 橫向滑動、一頁一頁 */
+        .menu-slider {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+        
+        .menu-slider-wrapper {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            gap: 20px;
+            padding: 10px 0;
+        }
+        
+        .menu-slide {
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+        }
+        
+        .menu-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* 滑動指示器 */
+        .menu-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
             margin-top: 20px;
         }
         
-        .menu-photo-item {
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        .menu-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ccc;
+            cursor: pointer;
         }
         
-        .menu-photo-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            display: block;
+        .menu-indicator.active {
+            background-color: #8c2c2c;
         }
         
         /* 頁腳 */
@@ -158,7 +225,15 @@
         /* 響應式調整 */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+            
+            .banner {
+                height: 300px;
+            }
+            
+            .banner-overlay h2 {
+                font-size: 1.8rem;
             }
             
             .core-photos {
@@ -168,7 +243,7 @@
             nav a {
                 display: inline-block;
                 margin: 5px 8px;
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -192,6 +267,15 @@
         <a href="#menu">菜單</a>
     </nav>
     
+    <!-- 首頁 Banner（店門口照片） -->
+    <div class="banner">
+        <img src="./entrance.jpg" alt="吉松和漢日本料理 店門口">
+        <div class="banner-overlay">
+            <h2>吉松和漢日本料理</h2>
+            <p>道地日式風味，新鮮食材現點現做</p>
+        </div>
+    </div>
+    
     <!-- 主要內容 -->
     <div class="container">
         <section id="home">
@@ -209,10 +293,6 @@
         <section id="core-photos">
             <h2>店內環境與招牌料理</h2>
             <div class="core-photos">
-                <div class="core-photo-item">
-                    <img src="./entrance.jpg" alt="餐廳門口">
-                    <p>餐廳門口 / 招牌</p>
-                </div>
                 <div class="core-photo-item">
                     <img src="./private-room.jpg" alt="包廂">
                     <p>包廂環境</p>
@@ -248,58 +328,45 @@
             </div>
         </section>
         
-        <!-- 菜單區域 -->
+        <!-- 菜單滑動區域 -->
         <section id="menu">
             <h2>菜單</h2>
-            <div class="menu-photos">
-                <!-- 菜單照片 01-16 -->
-                <div class="menu-photo-item">
-                    <img src="./menu01.jpg" alt="菜單01">
+            <div class="menu-slider">
+                <div class="menu-slider-wrapper">
+                    <div class="menu-slide"><img src="./menu01.jpg" alt="菜單01"></div>
+                    <div class="menu-slide"><img src="./menu02.jpg" alt="菜單02"></div>
+                    <div class="menu-slide"><img src="./menu03.jpg" alt="菜單03"></div>
+                    <div class="menu-slide"><img src="./menu04.jpg" alt="菜單04"></div>
+                    <div class="menu-slide"><img src="./menu05.jpg" alt="菜單05"></div>
+                    <div class="menu-slide"><img src="./menu06.jpg" alt="菜單06"></div>
+                    <div class="menu-slide"><img src="./menu07.jpg" alt="菜單07"></div>
+                    <div class="menu-slide"><img src="./menu08.jpg" alt="菜單08"></div>
+                    <div class="menu-slide"><img src="./menu09.jpg" alt="菜單09"></div>
+                    <div class="menu-slide"><img src="./menu10.jpg" alt="菜單10"></div>
+                    <div class="menu-slide"><img src="./menu11.jpg" alt="菜單11"></div>
+                    <div class="menu-slide"><img src="./menu12.jpg" alt="菜單12"></div>
+                    <div class="menu-slide"><img src="./menu13.jpg" alt="菜單13"></div>
+                    <div class="menu-slide"><img src="./menu14.jpg" alt="菜單14"></div>
+                    <div class="menu-slide"><img src="./menu15.jpg" alt="菜單15"></div>
+                    <div class="menu-slide"><img src="./menu16.jpg" alt="菜單16"></div>
                 </div>
-                <div class="menu-photo-item">
-                    <img src="./menu02.jpg" alt="菜單02">
-                </div>
-                <div class="menu-photo-item">
-                    <img src="./menu03.jpg" alt="菜單03">
-                </div>
-                <div class="menu-photo-item">
-                    <img src="./menu04.jpg" alt="菜單04">
-                </div>
-                <div class="menu-photo-item">
-                    <img src="./menu05.jpg" alt="菜單05">
-                </div>
-                <div class="menu-photo-item">
-                    <img src="./menu06.jpg" alt="菜單06">
-                </div>
-                <div class="menu-photo-item">
-                    <img src="./menu07.jpg" alt="菜單07">
-                </div>
-                <div class="menu-photo-item">
-                    <img src="./menu08.jpg" alt="菜單08">
-                </div>
-                <div class="menu-photo-item">
-                    <img src="./menu09.jpg" alt="菜單09">
-                </div>
-                <div class="menu-photo-item">
-                    <img src="./menu10.jpg" alt="菜單10">
-                </div>
-                <div class="menu-photo-item">
-                    <img src="./menu11.jpg" alt="菜單11">
-                </div>
-                <div class="menu-photo-item">
-                    <img src="./menu12.jpg" alt="菜單12">
-                </div>
-                <div class="menu-photo-item">
-                    <img src="./menu13.jpg" alt="菜單13">
-                </div>
-                <div class="menu-photo-item">
-                    <img src="./menu14.jpg" alt="菜單14">
-                </div>
-                <div class="menu-photo-item">
-                    <img src="./menu15.jpg" alt="菜單15">
-                </div>
-                <div class="menu-photo-item">
-                    <img src="./menu16.jpg" alt="菜單16">
+                <div class="menu-indicators">
+                    <div class="menu-indicator active"></div>
+                    <div class="menu-indicator"></div>
+                    <div class="menu-indicator"></div>
+                    <div class="menu-indicator"></div>
+                    <div class="menu-indicator"></div>
+                    <div class="menu-indicator"></div>
+                    <div class="menu-indicator"></div>
+                    <div class="menu-indicator"></div>
+                    <div class="menu-indicator"></div>
+                    <div class="menu-indicator"></div>
+                    <div class="menu-indicator"></div>
+                    <div class="menu-indicator"></div>
+                    <div class="menu-indicator"></div>
+                    <div class="menu-indicator"></div>
+                    <div class="menu-indicator"></div>
+                    <div class="menu-indicator"></div>
                 </div>
             </div>
         </section>

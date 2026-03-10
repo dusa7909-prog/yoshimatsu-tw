@@ -5,105 +5,92 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>吉松和漢日本料理</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,"Microsoft JhengHei",sans-serif}
-body{background:#f8f5f0;color:#333}
-header{background:#8c2c2c;color:white;padding:20px 0;text-align:center}
-.logo{max-width:150px;margin:10px auto;display:block}
-h1{font-size:24px;margin-bottom:10px}
-.contact-info{font-size:14px;line-height:1.6}
-nav{background:#4a1a1a;padding:10px 0;text-align:center}
-nav a{color:white;margin:0 10px;text-decoration:none;font-size:15px}
+  body { margin: 0; background: #f9f9f9; font-family: sans-serif; }
+  img { width: 100%; display: block; }
 
-/* 大門橫圖 banner */
-.banner{width:100%;height:400px;position:relative}
-.banner img{width:100%;height:100%;object-fit:cover}
+  /* 首頁大圖 Banner */
+  .banner {
+    width: 100%;
+    height: auto;
+  }
 
-/* 菜單滑動 */
-.menu-slider{width:100%;overflow:hidden}
-.menu-slider-wrapper{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}
-.menu-slide{flex:none;width:100%;scroll-snap-align:center}
-.menu-slide img{width:100%;height:auto;display:block}
+  /* 菜單：左右滑動、一頁一頁 */
+  .menu-slider {
+    overflow: hidden;
+  }
+  .menu-wrapper {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  .menu-page {
+    flex: none;
+    width: 100%;
+    scroll-snap-align: start;
+  }
 
-/* 照片排版 */
-.core-photos{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:20px}
-.core-photos img{width:100%;height:auto;border-radius:8px}
-
-section{padding:20px;background:white;margin:20px;border-radius:10px}
-footer{background:#333;color:white;text-align:center;padding:20px;font-size:14px}
+  /* 資訊 */
+  .info {
+    padding: 20px;
+    background: white;
+    margin: 10px 0;
+  }
+  .info h2 {
+    margin-top: 0;
+    color: #c44242;
+  }
+  footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
 </style>
 </head>
 
 <body>
 
-<header>
-<img src="logo.jpg" alt="Logo" class="logo">
-<h1>吉松和漢日本料理</h1>
-<div class="contact-info">
-電話：02-25230339<br>
-地址：10491臺北市中山區中山北路二段50巷15號<br>
-營業時間：11:30–14:00、17:00–21:00<br>
-信箱：service@yoshimatsu.tw
-</div>
-</header>
-
-<nav>
-<a href="#home">首頁</a>
-<a href="#photos">環境與料理</a>
-<a href="#menu">菜單</a>
-</nav>
-
-<!-- 大門橫圖 -->
+<!-- 首頁大門圖 -->
 <div class="banner">
-<img src="entrance.jpg" alt="大門口">
+  <img src="entrance.jpg" alt="店門口">
 </div>
 
-<section id="home">
-<h2>歡迎光臨 吉松和漢日本料理</h2>
-<p style="margin-top:10px;font-size:16px;line-height:1.8">
-堅持新鮮食材、道地日式風味，提供無比美味的刺身、壽司、鍋物與精緻套餐。
-</p>
-</section>
+<!-- 店家資訊 -->
+<div class="info">
+  <h2>吉松和漢日本料理</h2>
+  <p>電話：02-25230339</p>
+  <p>地址：10491 臺北市中山區中山北路二段50巷15號</p>
+  <p>營業時間：11:30–14:00、17:00–21:00</p>
+  <p>信箱：service@yoshimatsu.tw</p>
+</div>
 
-<section id="photos">
-<h2>店內環境與招牌料理</h2>
-<div class="core-photos">
-<div><img src="private-room.jpg" alt="包廂"></div>
-<div><img src="otoro.jpg" alt="大腹"></div>
-<div><img src="uni.jpg" alt="海膽"></div>
-<div><img src="sashimi-platter.jpg" alt="刺身拼盤"></div>
-<div><img src="aburi-roll.jpg" alt="炙燒卷"></div>
-<div><img src="marrow-soup.jpg" alt="骨髓湯"></div>
+<!-- 菜單 16 頁，左右滑動 -->
+<div class="info">
+  <h2>菜單（左右滑動）</h2>
+  <div class="menu-slider">
+    <div class="menu-wrapper">
+      <div class="menu-page"><img src="menu01.jpg"></div>
+      <div class="menu-page"><img src="menu02.jpg"></div>
+      <div class="menu-page"><img src="menu03.jpg"></div>
+      <div class="menu-page"><img src="menu04.jpg"></div>
+      <div class="menu-page"><img src="menu05.jpg"></div>
+      <div class="menu-page"><img src="menu06.jpg"></div>
+      <div class="menu-page"><img src="menu07.jpg"></div>
+      <div class="menu-page"><img src="menu08.jpg"></div>
+      <div class="menu-page"><img src="menu09.jpg"></div>
+      <div class="menu-page"><img src="menu10.jpg"></div>
+      <div class="menu-page"><img src="menu11.jpg"></div>
+      <div class="menu-page"><img src="menu12.jpg"></div>
+      <div class="menu-page"><img src="menu13.jpg"></div>
+      <div class="menu-page"><img src="menu14.jpg"></div>
+      <div class="menu-page"><img src="menu15.jpg"></div>
+      <div class="menu-page"><img src="menu16.jpg"></div>
+    </div>
+  </div>
 </div>
-</section>
-
-<!-- 菜單 16張 滑動 -->
-<section id="menu">
-<h2>菜單（左右滑動觀看）</h2>
-<div class="menu-slider">
-<div class="menu-slider-wrapper">
-<div class="menu-slide"><img src="menu01.jpg"></div>
-<div class="menu-slide"><img src="menu02.jpg"></div>
-<div class="menu-slide"><img src="menu03.jpg"></div>
-<div class="menu-slide"><img src="menu04.jpg"></div>
-<div class="menu-slide"><img src="menu05.jpg"></div>
-<div class="menu-slide"><img src="menu06.jpg"></div>
-<div class="menu-slide"><img src="menu07.jpg"></div>
-<div class="menu-slide"><img src="menu08.jpg"></div>
-<div class="menu-slide"><img src="menu09.jpg"></div>
-<div class="menu-slide"><img src="menu10.jpg"></div>
-<div class="menu-slide"><img src="menu11.jpg"></div>
-<div class="menu-slide"><img src="menu12.jpg"></div>
-<div class="menu-slide"><img src="menu13.jpg"></div>
-<div class="menu-slide"><img src="menu14.jpg"></div>
-<div class="menu-slide"><img src="menu15.jpg"></div>
-<div class="menu-slide"><img src="menu16.jpg"></div>
-</div>
-</div>
-</section>
 
 <footer>
-<p>© 2026 吉松和漢日本料理 版權所有</p>
-<p>官網：yoshimatsu.tw</p>
+  <p>© 2026 吉松和漢日本料理</p>
 </footer>
 
 </body>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>吉松和漢日本料理</title>
     <style>
-        /* 整體樣式 - 日式風格 */
+        /* 全域樣式重置 */
         * {
             margin: 0;
             padding: 0;
@@ -19,7 +19,7 @@
             line-height: 1.6;
         }
         
-        /* 頁首 */
+        /* 頁首樣式 */
         header {
             background-color: #8c2c2c;
             color: white;
@@ -63,13 +63,14 @@
             padding: 6px 12px;
             border-radius: 4px;
             transition: background-color 0.3s;
+            display: inline-block;
         }
         
         nav a:hover {
             background-color: #6b2b2b;
         }
         
-        /* 首頁 Banner（店門口照片） */
+        /* 首頁 Banner（店門口照片）- 全屏大横幅 */
         .banner {
             width: 100%;
             height: 500px;
@@ -89,25 +90,25 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.6));
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
             color: white;
-            padding: 30px;
+            padding: 40px 20px;
             text-align: center;
         }
         
         .banner-overlay h2 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
             border: none;
             color: white;
             padding: 0;
         }
         
         .banner-overlay p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
         
-        /* 主要內容 */
+        /* 主要內容容器 */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -130,7 +131,7 @@
             font-size: 2rem;
         }
         
-        /* 核心照片展示 */
+        /* 核心照片展示區 */
         .core-photos {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -163,10 +164,9 @@
             font-weight: 500;
         }
         
-        /* 菜單滑動樣式 - 橫向滑動、一頁一頁 */
+        /* 菜單滑動區域 - 橫向一頁一頁滑動 */
         .menu-slider {
             position: relative;
-            overflow: hidden;
             padding: 20px 0;
         }
         
@@ -177,6 +177,13 @@
             scroll-behavior: smooth;
             gap: 20px;
             padding: 10px 0;
+            /* 隱藏滾動條但保留滑動功能 */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .menu-slider-wrapper::-webkit-scrollbar {
+            display: none;
         }
         
         .menu-slide {
@@ -193,7 +200,7 @@
             display: block;
         }
         
-        /* 滑動指示器 */
+        /* 菜單滑動指示器 */
         .menu-indicators {
             display: flex;
             justify-content: center;
@@ -202,18 +209,19 @@
         }
         
         .menu-indicator {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             background-color: #ccc;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
         
         .menu-indicator.active {
             background-color: #8c2c2c;
         }
         
-        /* 頁腳 */
+        /* 頁腳樣式 */
         footer {
             background-color: #333;
             color: white;
@@ -222,10 +230,10 @@
             margin-top: 50px;
         }
         
-        /* 響應式調整 */
+        /* 響應式調整 - 手機版 */
         @media (max-width: 768px) {
             h1 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
             
             .banner {
@@ -236,20 +244,23 @@
                 font-size: 1.8rem;
             }
             
+            .banner-overlay p {
+                font-size: 1rem;
+            }
+            
             .core-photos {
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
             
             nav a {
-                display: inline-block;
-                margin: 5px 8px;
+                margin: 5px 6px;
                 font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 頁首 -->
+    <!-- 頁首區域 -->
     <header>
         <img src="./logo.jpg" alt="吉松和漢日本料理 LOGO" class="logo">
         <h1>吉松和漢日本料理</h1>
@@ -272,12 +283,13 @@
         <img src="./entrance.jpg" alt="吉松和漢日本料理 店門口">
         <div class="banner-overlay">
             <h2>吉松和漢日本料理</h2>
-            <p>道地日式風味，新鮮食材現點現做</p>
+            <p>道地日式風味 · 新鮮食材現點現做</p>
         </div>
     </div>
     
-    <!-- 主要內容 -->
+    <!-- 主要內容容器 -->
     <div class="container">
+        <!-- 首頁介紹 -->
         <section id="home">
             <h2>歡迎光臨吉松和漢日本料理</h2>
             <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
@@ -289,7 +301,7 @@
             </p>
         </section>
         
-        <!-- 核心照片區域 -->
+        <!-- 核心照片展示區 -->
         <section id="core-photos">
             <h2>店內環境與招牌料理</h2>
             <div class="core-photos">
@@ -378,5 +390,37 @@
         <p style="margin-top: 10px;">地址：10491 臺北市中山區中山北路二段50巷15號 | 電話：02-25230339</p>
         <p style="margin-top: 5px;">信箱：service@yoshimatsu.tw | 官網：https://yoshimatsu.tw</p>
     </footer>
+
+    <!-- 滑動指示器交互 JS -->
+    <script>
+        // 獲取元素
+        const sliderWrapper = document.querySelector('.menu-slider-wrapper');
+        const indicators = document.querySelectorAll('.menu-indicator');
+        const slides = document.querySelectorAll('.menu-slide');
+
+        // 滑動時更新指示器
+        sliderWrapper.addEventListener('scroll', () => {
+            const slideWidth = slides[0].offsetWidth;
+            const currentIndex = Math.round(sliderWrapper.scrollLeft / slideWidth);
+            
+            indicators.forEach((indicator, index) => {
+                if (index === currentIndex) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        });
+
+        // 點擊指示器跳轉對應菜單
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                sliderWrapper.scrollTo({
+                    left: slides[index].offsetLeft,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>

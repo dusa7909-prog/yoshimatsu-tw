@@ -1,229 +1,68 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>吉松和汉日本料理</title>
+<title>Yoshimatsu</title>
 <style>
-  /* 全局基础样式 */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Microsoft Yahei", "SimHei", sans-serif;
-  }
-  body {
-    background-color: #f8f5f0;
-    color: #333;
-    line-height: 1.6;
-  }
-
-  /* 顶部标题栏 */
-  header {
-    background-color: #8c2c2c;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-  }
-  header h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-  }
-  .contact-info {
-    font-size: 15px;
-    line-height: 1.7;
-  }
-
-  /* 导航栏 */
-  nav {
-    background-color: #4a1a1a;
-    padding: 12px 0;
-    text-align: center;
-  }
-  nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 16px;
-  }
-  nav a:hover {
-    text-decoration: underline;
-  }
-
-  /* 店门口大图 Banner */
-  .banner {
-    width: 100%;
-    height: 450px;
-    overflow: hidden;
-  }
-  .banner img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  /* 内容容器 */
-  .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-
-  /* 内容区块 */
-  .section-box {
-    background-color: white;
-    padding: 30px;
-    margin: 20px 0;
-    border-radius: 12px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  }
-  .section-box h2 {
-    color: #8c2c2c;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #eee;
-    font-size: 24px;
-  }
-  .section-box p {
-    font-size: 16px;
-    line-height: 1.8;
-  }
-
-  /* 环境/料理照片网格 */
-  .photo-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-    margin-top: 15px;
-  }
-  .photo-grid img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  }
-
-  /* 菜单区域（一页一页显示） */
-  .menu-list img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  }
-
-  /* 页脚 */
-  footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 30px;
-    font-size: 14px;
-  }
-
-  /* 手机适配 */
-  @media (max-width: 768px) {
-    .banner {
-      height: 300px;
-    }
-    .photo-grid {
-      grid-template-columns: 1fr;
-    }
-    .section-box {
-      padding: 20px;
-    }
-    nav a {
-      margin: 0 8px;
-      font-size: 14px;
-    }
-  }
+  * { margin:0; padding:0; box-sizing:border-box; font-family:sans-serif; }
+  body { background:#f8f5f0; }
+  header { background:#8c2c2c; color:white; text-align:center; padding:20px; }
+  nav { background:#4a1a1a; padding:10px; text-align:center; }
+  nav a { color:white; margin:0 10px; text-decoration:none; }
+  img { width:100%; height:auto; margin-bottom:10px; display:block; }
+  .container { padding:20px; max-width:1000px; margin:auto; }
+  .box { background:white; padding:20px; margin:20px 0; border-radius:10px; }
+  h2 { color:#8c2c2c; margin-bottom:15px; }
+  footer { background:#333; color:white; text-align:center; padding:20px; }
 </style>
 </head>
 
 <body>
-  <!-- 顶部标题栏 -->
-  <header>
-    <h1>吉松和汉日本料理</h1>
-    <div class="contact-info">
-      电话：02-25230339<br>
-      地址：10491 台北市中山区中山北路二段50巷15号<br>
-      营业时间：11:30–14:00、17:00–21:00<br>
-      邮箱：service@yoshimatsu.tw
-    </div>
-  </header>
 
-  <!-- 导航栏 -->
-  <nav>
-    <a href="#home">首页</a>
-    <a href="#about">关于我们</a>
-    <a href="#photos">环境与料理</a>
-    <a href="#menu">菜单</a>
-  </nav>
+<header>
+  <h1>Yoshimatsu Japanese Restaurant</h1>
+  <p>Tel: 02-25230339</p>
+</header>
 
-  <!-- 店门口大图 Banner（路径是英文文件名，和你保持一致） -->
-  <div class="banner">
-    <img src="entrance.jpg" alt="store entrance">
+<nav>
+  <a href="#home">Home</a>
+  <a href="#menu">Menu</a>
+</nav>
+
+<div class="container">
+  <div class="box" id="home">
+    <h2>Entrance</h2>
+    <img src="entrance.jpg" alt="">
   </div>
 
-  <!-- 主要内容 -->
-  <div class="container">
-    <!-- 首页介绍 -->
-    <div class="section-box" id="home">
-      <h2>欢迎光临吉松和汉日本料理</h2>
-      <p>吉松和汉日本料理坚持使用新鲜食材，提供地道的日式料理体验。无论是精致的刺身拼盘、香气四溢的炙烧寿司，还是温暖入心的黑鲔鱼骨髓汤，都能让您品尝到最正宗的日式美味。</p>
-      <p style="margin-top: 15px;">我们拥有舒适的用餐环境和包厢服务，适合家庭聚餐、朋友聚会或商务宴请。期待您的光临！</p>
-    </div>
-
-    <!-- 关于我们 -->
-    <div class="section-box" id="about">
-      <h2>关于我们</h2>
-      <p>吉松和汉日本料理深耕台北多年，秉持「新鲜、地道、用心」的理念，每一道料理都由资深师傅现点现做，选用当日新鲜渔获与优质食材，让顾客品尝到最原汁原味的日式料理。</p>
-    </div>
-
-    <!-- 环境与料理照片（alt全部用英文，匹配你的文件名） -->
-    <div class="section-box" id="photos">
-      <h2>店内环境与招牌料理</h2>
-      <div class="photo-grid">
-        <img src="private-room.jpg" alt="private room">
-        <img src="otoro.jpg" alt="otoro sashimi">
-        <img src="uni.jpg" alt="sea urchin">
-        <img src="sashimi-platter.jpg" alt="sashimi platter">
-        <img src="aburi-roll.jpg" alt="aburi sushi roll">
-        <img src="marrow-soup.jpg" alt="bone marrow soup">
-      </div>
-    </div>
-
-    <!-- 菜单区域（alt用英文，文件名保持英文） -->
-    <div class="section-box" id="menu">
-      <h2>菜单</h2>
-      <div class="menu-list">
-        <img src="menu01.jpg" alt="menu page 01">
-        <img src="menu02.jpg" alt="menu page 02">
-        <img src="menu03.jpg" alt="menu page 03">
-        <img src="menu04.jpg" alt="menu page 04">
-        <img src="menu05.jpg" alt="menu page 05">
-        <img src="menu06.jpg" alt="menu page 06">
-        <img src="menu07.jpg" alt="menu page 07">
-        <img src="menu08.jpg" alt="menu page 08">
-        <img src="menu09.jpg" alt="menu page 09">
-        <img src="menu10.jpg" alt="menu page 10">
-        <img src="menu11.jpg" alt="menu page 11">
-        <img src="menu12.jpg" alt="menu page 12">
-        <img src="menu13.jpg" alt="menu page 13">
-        <img src="menu14.jpg" alt="menu page 14">
-        <img src="menu15.jpg" alt="menu page 15">
-        <img src="menu16.jpg" alt="menu page 16">
-      </div>
-    </div>
+  <div class="box">
+    <h2>Room</h2>
+    <img src="room.jpg" alt="">
   </div>
 
-  <!-- 页脚 -->
-  <footer>
-    <p>© 2026 吉松和汉日本料理 版权所有</p>
-    <p style="margin-top: 8px;">地址：10491 台北市中山区中山北路二段50巷15号 | 电话：02-25230339</p>
-  </footer>
+  <div class="box" id="menu">
+    <h2>Menu</h2>
+    <img src="menu01.jpg" alt="">
+    <img src="menu02.jpg" alt="">
+    <img src="menu03.jpg" alt="">
+    <img src="menu04.jpg" alt="">
+    <img src="menu05.jpg" alt="">
+    <img src="menu06.jpg" alt="">
+    <img src="menu07.jpg" alt="">
+    <img src="menu08.jpg" alt="">
+    <img src="menu09.jpg" alt="">
+    <img src="menu10.jpg" alt="">
+    <img src="menu11.jpg" alt="">
+    <img src="menu12.jpg" alt="">
+    <img src="menu13.jpg" alt="">
+    <img src="menu14.jpg" alt="">
+    <img src="menu15.jpg" alt="">
+    <img src="menu16.jpg" alt="">
+  </div>
+</div>
+
+<footer>&copy; 2026 Yoshimatsu</footer>
+
 </body>
 </html>

@@ -1,111 +1,121 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>吉松和漢日本料理</title>
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Microsoft JhengHei", sans-serif;
-}
-
-body {
-  background: #f8f5f0;
-  color: #333;
-}
-
-header {
-  background: #8c2c2c;
-  color: white;
-  text-align: center;
-  padding: 20px 0;
-}
-
-.logo {
-  max-width: 160px;
-  margin: 10px auto;
-  display: block;
-}
-
-h1 {
-  font-size: 28px;
-  margin-bottom: 10px;
-}
-
-.contact-info {
-  font-size: 15px;
-  line-height: 1.7;
-}
-
-nav {
-  background: #4a1a1a;
-  padding: 12px 0;
-  text-align: center;
-}
-
-nav a {
-  color: white;
-  margin: 0 15px;
-  text-decoration: none;
-  font-size: 16px;
-}
-
-/* 大門首頁橫圖 */
-.banner {
-  width: 100%;
-  height: 460px;
-}
-
-.banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-section {
-  background: white;
-  padding: 30px;
-  margin: 20px 0;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-}
-
-h2 {
-  color: #8c2c2c;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #eee;
-  font-size: 24px;
-}
-
-p {
-  line-height: 1.8;
-  font-size: 16px;
-}
-
-/* 環境與料理照片排版 */
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-  margin-top: 10px;
-}
-
-.photo-grid img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-
-/*
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>吉松和漢日本料理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft JhengHei", sans-serif;
+        }
+        body {
+            background: #f8f5f0;
+            color: #333;
+        }
+        header {
+            background: #8c2c2c;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .contact-info {
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        nav {
+            background: #4a1a1a;
+            padding: 12px 0;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        /* 店门口大图 Banner */
+        .banner {
+            width: 100%;
+            height: 450px;
+        }
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        section {
+            background: white;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #8c2c2c;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            font-size: 24px;
+        }
+        p {
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>吉松和漢日本料理</h1>
+        <div class="contact-info">
+            電話：02-25230339<br>
+            地址：10491 臺北市中山區中山北路二段50巷15號<br>
+            營業時間：11:30–14:00、17:00–21:00
+        </div>
+    </header>
+    <nav>
+        <a href="#home">首頁</a>
+        <a href="#about">關於我們</a>
+        <a href="#menu">菜單</a>
+    </nav>
+    <!-- 店门口大图 Banner -->
+    <div class="banner">
+        <img src="entrance.jpg" alt="吉松和漢日本料理 店門口">
+    </div>
+    <div class="container">
+        <section id="home">
+            <h2>歡迎光臨</h2>
+            <p>吉松和漢日本料理堅持使用新鮮食材，提供道地日式風味，讓您在台北也能品嘗到正宗日本料理。</p>
+        </section>
+        <section id="about">
+            <h2>關於我們</h2>
+            <p>我們堅持現點現做，從刺身、壽司到鍋物，每一道料理都充滿職人精神，期待您的光臨。</p>
+        </section>
+        <section id="menu">
+            <h2>菜單</h2>
+            <p>菜單內容將陸續更新，敬請期待。</p>
+        </section>
+    </div>
+    <footer>
+        <p>© 2026 吉松和漢日本料理 版權所有</p>
+    </footer>
+</body>
+</html>

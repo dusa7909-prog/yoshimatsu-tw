@@ -1,59 +1,273 @@
-<!-- 菜单图片板块（适配你的网站） -->
-<div class="menu-gallery" style="margin: 20px auto; max-width: 1200px;">
-    <!-- 替换成你网站里的菜单图片地址 -->
-    <div class="menu-item" data-img="https://dusa7909-prog.github.io/yoshimatsu-tw/菜单1.jpg">
-        <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/菜单1.jpg" alt="料理菜单1" style="width: 100%; border-radius: 8px;">
-    </div>
-    <div class="menu-item" data-img="https://dusa7909-prog.github.io/yoshimatsu-tw/菜单2.png">
-        <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/菜单2.png" alt="料理菜单2" style="width: 100%; border-radius: 8px;">
-    </div>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>吉松和漢日本料理</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Microsoft JhengHei", sans-serif;
+  }
+  body {
+    background: #fdfbf8;
+    color: #333;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* 頂部導覽 */
+  header {
+    background: #1a1a1a;
+    padding: 14px 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+  }
+  header a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 4px 8px;
+    display: inline-block;
+  }
+
+  /* 首屏大圖 */
+  .hero {
+    width: 100%;
+    height: auto;
+    max-height: 460px;
+    overflow: hidden;
+  }
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* 內容容器 */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 15px;
+  }
+
+  /* 標題樣式 */
+  .section-title {
+    text-align: center;
+    font-size: 22px;
+    color: #a00000;
+    margin: 30px 0 20px;
+  }
+  .section-title::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: #a00000;
+    margin: 8px auto;
+  }
+
+  /* 環境/料理網格 */
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+    grid-auto-flow: row;
+    grid-auto-rows: 180px;
+  }
+  .grid-3 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: zoom-in;
+    transition: transform 0.2s ease;
+  }
+
+  /* ✅ 菜單專用：長條垂直 + 每張之間留間隔 + 白色底邊框，看起來是一張一張 */
+  .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* 關鍵：每張菜單之間的間隔 */
+    margin-bottom: 30px;
+  }
+  .menu-list img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    background: #fff; /* 白色底，讓每張菜單更獨立 */
+    padding: 8px; /* 內邊距，讓圖片不會貼到邊框 */
+    cursor: zoom-in;
+    transition: transform 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05); /* 輕微陰影，強化「一張紙」的感覺 */
+  }
+
+  /* 圖片放大遮罩層 */
+  .image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+  }
+  .image-modal img {
+    max-width: 95%;
+    max-height: 95%;
+    border-radius: 8px;
+    cursor: zoom-in;
+  }
+
+  /* 底部資訊 */
+  footer {
+    background: #1a1a1a;
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  /* 手機端適配 */
+  @media (max-width: 768px) {
+    .grid-3 {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 160px;
+    }
+    .menu-list {
+      gap: 20px; /* 手機端間隔稍微縮小 */
+    }
+    .menu-list img {
+      padding: 6px;
+    }
+    .hero {
+      max-height: 280px;
+    }
+    header a {
+      margin: 0 6px;
+      font-size: 13px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .grid-3 {
+      grid-template-columns: 1fr;
+      grid-auto-rows: 200px;
+    }
+    .section-title {
+      font-size: 20px;
+    }
+  }
+</style>
+</head>
+
+<body>
+<header>
+  <a href="#home">首頁</a>
+  <a href="#env">環境</a>
+  <a href="#food">料理</a>
+  <a href="#menu">菜單</a>
+  <a href="#contact">聯絡我們</a>
+</header>
+
+<!-- 首屏大圖 -->
+<div class="hero" id="home">
+  <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/entrance.png" alt="吉松和漢日本料理">
 </div>
 
-<!-- 预览弹窗（加到body最后） -->
-<div class="preview-modal" id="previewModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 9999;">
-    <div class="preview-content" style="position: relative; max-width: 90%; max-height: 90%;">
-        <span class="close-btn" id="closeBtn" style="position: absolute; top: -40px; right: 0; color: white; font-size: 30px; cursor: pointer;">&times;</span>
-        <img src="" alt="预览图片" class="preview-img" id="previewImg" style="max-width: 100%; max-height: 100%; cursor: move; transition: transform 0.1s ease;">
-        <div style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); color: white; font-size: 14px;">滚轮缩放 / 拖拽移动</div>
-    </div>
+<div class="container">
+  <!-- 店內環境 -->
+  <h2 class="section-title" id="env">店內環境</h2>
+  <div class="grid-3">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room.png" alt="包廂" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room.png" alt="包廂" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room.png" alt="包廂" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room.png" alt="包廂" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room.png" alt="包廂" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room.png" alt="包廂" onclick="openModal(this.src)">
+  </div>
+
+  <!-- 精選料理 -->
+  <h2 class="section-title" id="food">精選料理</h2>
+  <div class="grid-3">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/otoro.jpg" alt="大腹" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/uni.jpg" alt="海膽" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/sashimi-platter.jpg" alt="生魚片" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/aburi-roll.jpg" alt="炙壽司" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/marrow-soup.jpg" alt="骨髓湯" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/mulletroe.jpg" alt="烏魚子" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/otoro.jpg" alt="大腹" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/uni.jpg" alt="海膽" onclick="openModal(this.src)">
+  </div>
+
+  <!-- ✅ 完整菜單：長條垂直 + 間隔 + 邊框，看起來是一張一張 -->
+  <h2 class="section-title" id="menu">完整菜單</h2>
+  <div class="menu-list">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_01.png" alt="菜單1" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_02.png" alt="菜單2" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_03.png" alt="菜單3" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_04.png" alt="菜單4" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_05.png" alt="菜單5" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_06.png" alt="菜單6" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_07.png" alt="菜單7" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_08.png" alt="菜單8" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_09.png" alt="菜單9" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_10.png" alt="菜單10" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_11.png" alt="菜單11" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_12.png" alt="菜單12" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_13.png" alt="菜單13" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_14.png" alt="菜單14" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_15.png" alt="菜單15" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_16.png" alt="菜單16" onclick="openModal(this.src)">
+  </div>
 </div>
 
-<!-- 预览功能脚本（加到body最后） -->
+<!-- 聯絡資訊 -->
+<footer id="contact">
+  <h3>吉松和漢日本料理</h3>
+  <p>電話：02-25230333</p>
+  <p>地址：台北市中山區中山北路二段50巷15號</p>
+  <p>營業時間：11:30–14:00、17:00–21:00</p>
+</footer>
+
+<!-- 圖片放大彈窗 -->
+<div class="image-modal" id="imageModal" onclick="closeModal()">
+  <img id="modalImage" src="" alt="放大查看">
+</div>
+
 <script>
-    const menuItems = document.querySelectorAll('.menu-item');
-    const previewModal = document.getElementById('previewModal');
-    const previewImg = document.getElementById('previewImg');
-    const closeBtn = document.getElementById('closeBtn');
-
-    let scale = 1, isDragging = false, startX, startY, x = 0, y = 0;
-
-    // 点击打开预览
-    menuItems.forEach(item => {
-        item.addEventListener('click', () => {
-            previewImg.src = item.dataset.img;
-            scale = 1; x = 0; y = 0;
-            previewImg.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
-            previewModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        });
-    });
-
-    // 关闭预览
-    const closePreview = () => {
-        previewModal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    };
-    closeBtn.addEventListener('click', closePreview);
-    previewModal.addEventListener('click', (e) => e.target === previewModal && closePreview());
-    document.addEventListener('keydown', (e) => e.key === 'Escape' && closePreview());
-
-    // 滚轮缩放
-    previewModal.addEventListener('wheel', (e) => {
-        e.preventDefault();
-        scale = Math.max(0.5, Math.min(3, scale + (e.deltaY > 0 ? -0.1 : 0.1)));
-        previewImg.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
-    });
-
-    // 拖拽移动
-    previewImg.addEventListener('mousedown', (e) => {
-        is
+  function openModal(imageSrc) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    modal.style.display = 'flex';
+    modalImg.src = imageSrc;
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    const modal = document.getElementById('imageModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+</body>
+</html>

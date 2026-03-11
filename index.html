@@ -1,142 +1,59 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>吉松和漢日本料理</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft JhengHei", sans-serif;
-        }
-        body {
-            background-color: #faf7f0;
-            color: #333;
-        }
-        .header {
-            text-align: center;
-            padding: 2rem 0;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .header h1 {
-            font-size: 2.5rem;
-            color: #8b4513;
-            margin-bottom: 0.5rem;
-        }
-        .header p {
-            font-size: 1.1rem;
-            color: #666;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-        .section {
-            margin-bottom: 3rem;
-        }
-        .section h2 {
-            font-size: 1.8rem;
-            color: #8b4513;
-            border-bottom: 2px solid #d2b48c;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        .img-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-        }
-        .img-grid img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.2s ease;
-        }
-        .img-grid img:hover {
-            transform: scale(1.02);
-        }
-        .footer {
-            text-align: center;
-            padding: 1.5rem 0;
-            background-color: #fff;
-            box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
-            color: #666;
-            font-size: 0.9rem;
-        }
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            .section h2 {
-                font-size: 1.5rem;
-            }
-            .img-grid {
-                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h1>吉松和漢日本料理</h1>
-        <p>新鮮食材 · 匠心手作 · 溫馨氛圍</p>
+<!-- 菜单图片板块（适配你的网站） -->
+<div class="menu-gallery" style="margin: 20px auto; max-width: 1200px;">
+    <!-- 替换成你网站里的菜单图片地址 -->
+    <div class="menu-item" data-img="https://dusa7909-prog.github.io/yoshimatsu-tw/菜单1.jpg">
+        <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/菜单1.jpg" alt="料理菜单1" style="width: 100%; border-radius: 8px;">
     </div>
-
-    <div class="container">
-        <!-- 店內環境 -->
-        <div class="section">
-            <h2>店內環境</h2>
-            <div class="img-grid">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/env/logo.jpg" alt="吉松LOGO">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/env/env1.jpg" alt="店內環境1">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/env/bar.jpg" alt="吧台">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/env/room1.jpg" alt="包廂1">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/env/room2.jpg" alt="包廂2">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/env/env6.jpg" alt="店內環境6">
-            </div>
-        </div>
-
-        <!-- 精選料理 -->
-        <div class="section">
-            <h2>精選料理</h2>
-            <div class="img-grid">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/food/food1.jpg" alt="料理1">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/food/food2.jpg" alt="料理2">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/food/food3.jpg" alt="料理3">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/food/food4.jpg" alt="料理4">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/food/food5.jpg" alt="料理5">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/food/food6.jpg" alt="料理6">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/food/food7.jpg" alt="料理7">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/food/food8.jpg" alt="料理8">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/food/food9.jpg" alt="料理9">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/food/food10.jpg" alt="料理10">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/food/food11.jpg" alt="料理11">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/food/food12.jpg" alt="料理12">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/food/food13.jpg" alt="料理13">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/food/food14_new.jpg" alt="料理14">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/food/food15_new.jpg" alt="料理15">
-            </div>
-        </div>
-
-        <!-- 菜單 -->
-        <div class="section">
-            <h2>菜單</h2>
-            <div class="img-grid">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/menu/menu1.jpg" alt="菜單1">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/menu/menu2.jpg" alt="菜單2">
-                <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/images/menu/menu3.jpg" alt="菜單3">
-            </div>
-        </div>
+    <div class="menu-item" data-img="https://dusa7909-prog.github.io/yoshimatsu-tw/菜单2.png">
+        <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/菜单2.png" alt="料理菜单2" style="width: 100%; border-radius: 8px;">
     </div>
+</div>
 
-    <div class="footer">
-        <p>© 2025 吉松和漢日本料理 版權所有</p>
+<!-- 预览弹窗（加到body最后） -->
+<div class="preview-modal" id="previewModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 9999;">
+    <div class="preview-content" style="position: relative; max-width: 90%; max-height: 90%;">
+        <span class="close-btn" id="closeBtn" style="position: absolute; top: -40px; right: 0; color: white; font-size: 30px; cursor: pointer;">&times;</span>
+        <img src="" alt="预览图片" class="preview-img" id="previewImg" style="max-width: 100%; max-height: 100%; cursor: move; transition: transform 0.1s ease;">
+        <div style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); color: white; font-size: 14px;">滚轮缩放 / 拖拽移动</div>
     </div>
-</body>
-</html>
+</div>
+
+<!-- 预览功能脚本（加到body最后） -->
+<script>
+    const menuItems = document.querySelectorAll('.menu-item');
+    const previewModal = document.getElementById('previewModal');
+    const previewImg = document.getElementById('previewImg');
+    const closeBtn = document.getElementById('closeBtn');
+
+    let scale = 1, isDragging = false, startX, startY, x = 0, y = 0;
+
+    // 点击打开预览
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            previewImg.src = item.dataset.img;
+            scale = 1; x = 0; y = 0;
+            previewImg.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+            previewModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    // 关闭预览
+    const closePreview = () => {
+        previewModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    };
+    closeBtn.addEventListener('click', closePreview);
+    previewModal.addEventListener('click', (e) => e.target === previewModal && closePreview());
+    document.addEventListener('keydown', (e) => e.key === 'Escape' && closePreview());
+
+    // 滚轮缩放
+    previewModal.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        scale = Math.max(0.5, Math.min(3, scale + (e.deltaY > 0 ? -0.1 : 0.1)));
+        previewImg.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+    });
+
+    // 拖拽移动
+    previewImg.addEventListener('mousedown', (e) => {
+        is

@@ -16,7 +16,7 @@
     color: #333;
     line-height: 1.6;
   }
-  /* 导航栏 - 日式简约顶栏 */
+  /* 导航栏 */
   .nav-top {
     width: 100%;
     background: #000;
@@ -33,7 +33,7 @@
     font-size: 15px;
     letter-spacing: 1px;
   }
-  /* 首屏banner - 通栏大图（路径已改稳） */
+  /* Banner 大图 - 这里已经确认是 entrance.png */
   .hero-banner {
     width: 100%;
     height: auto;
@@ -43,7 +43,7 @@
     height: auto;
     display: block;
   }
-  /* 最新消息板块 - 春日活动风 */
+  /* 最新消息板块 */
   .news-section {
     background: #fdf9f5;
     padding: 40px 20px;
@@ -59,11 +59,7 @@
     font-size: 16px;
     margin-bottom: 10px;
   }
-  .news-section .activity-tag {
-    color: #c82829;
-    font-weight: bold;
-  }
-  /* 品牌理念板块 - 極炙本味同款排版 */
+  /* 品牌理念 */
   .brand-section {
     padding: 60px 20px;
     max-width: 1000px;
@@ -75,13 +71,13 @@
     margin-bottom: 25px;
     letter-spacing: 3px;
   }
-  .brand-section .brand-slogan {
+  .brand-slogan {
     font-size: 18px;
     line-height: 1.8;
     max-width: 700px;
     margin: 0 auto;
   }
-  /* 招牌料理板块 - 日式简约展示 */
+  /* 招牌料理展示 */
   .food-section {
     background: #f8f8f8;
     padding: 60px 20px;
@@ -105,7 +101,30 @@
     object-fit: cover;
     border-radius: 8px;
   }
-  /* 线上订位+联系板块 */
+  /* 完整菜单板块 */
+  .menu-section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .menu-section h2 {
+    font-size: 28px;
+    margin-bottom: 40px;
+    letter-spacing: 3px;
+  }
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  .menu-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #eee;
+  }
+  /* 订位板块 */
   .reserve-section {
     padding: 40px 20px;
     text-align: center;
@@ -128,78 +147,71 @@
     text-align: center;
     font-size: 15px;
   }
-  .footer p {
-    margin: 5px 0;
-  }
-  /* 适配手机 - 全部自适应，不会乱 */
-  @media (max-width: 768px) {
-    .nav-top a {
-      margin: 0 8px;
-      font-size: 14px;
-    }
-    .brand-section, .food-section {
-      padding: 30px 20px;
-    }
-    .brand-section h2, .food-section h2 {
-      font-size: 24px;
-    }
-  }
 </style>
 </head>
 <body>
-  <!-- 顶部导航栏 - 仿藝奇简约黑顶 -->
+
   <div class="nav-top">
-    <a href="#news">最新消息</a>
-    <a href="#brand">關於我們</a>
+    <a href="#home">首頁</a>
     <a href="#food">招牌料理</a>
-    <a href="#reserve">線上訂位</a>
-    <a href="#contact">聯繫我們</a>
+    <a href="#menu">線上菜單</a>
+    <a href="#reserve">訂位</a>
+    <a href="#contact">資訊</a>
   </div>
 
-  <!-- 首屏通栏Banner - 大门图（路径已改稳，适配GitHub） -->
-  <div class="hero-banner">
-    <img src="./entrance.jpg" alt="吉松和漢日本料理 門市環境">
+  <!-- 1. 大门图 - 已经确认叫 entrance.png -->
+  <div class="hero-banner" id="home">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/entrance.png" alt="吉松和漢日本料理">
   </div>
 
-  <!-- 最新消息板块 - 春日活动风 -->
-  <div class="news-section" id="news">
-    <h3>🌸 季節旨味 | 吉松的本味時刻 🌸</h3>
-    <p>◖ 2026/3/1 － 2026/4/30 ◗</p>
-    <p>憑活動畫面，內用消費2客套餐，即贈送 <span class="activity-tag">特製手作前菜 (乙份)</span></p>
-  </div>
-
-  <!-- 品牌理念板块 - 仿藝奇「極炙本味」风格 -->
-  <div class="brand-section" id="brand">
+  <div class="brand-section">
     <h2>本物の味</h2>
-    <p class="brand-slogan">以新鮮食材為靈魂，料理化做溫暖，<br>
-    一席日式本味，封存海陸鮮美記憶，<br>
-    吉松和漢，予你道地的日式用餐體驗。</p>
+    <p class="brand-slogan">
+      堅持新鮮食材，道地日式風味，<br>
+      吉松和漢，予你最真實的日本料理體驗。
+    </p>
   </div>
 
-  <!-- 招牌料理板块 - 网格展示（已改成menu1-menu4） -->
+  <!-- 2. 招牌料理 (4張) -->
   <div class="food-section" id="food">
     <h2>招牌料理</h2>
     <div class="food-grid">
-      <img src="./menu1.jpg" alt="日本黑鮪鱼肚">
-      <img src="./menu2.jpg" alt="海膽刺身">
-      <img src="./menu3.jpg" alt="比目鱼鳍邊肉干貝">
-      <img src="./menu4.jpg" alt="燉黑鮪魚骨髓汤">
+      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/otoro.jpg" alt="大腹">
+      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/uni.jpg" alt="海膽">
+      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/sashimi-platter.jpg" alt="生魚片">
+      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/aburi-roll.jpg" alt="炙壽司">
     </div>
   </div>
 
-  <!-- 线上订位板块 - 仿藝奇红色按钮风格 -->
+  <!-- 3. 完整菜单 (menu_01 到 menu_09) -->
+  <div class="menu-section" id="menu">
+    <h2>完整菜單</h2>
+    <div class="menu-grid">
+      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_01.png" alt="菜單1">
+      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_02.png" alt="菜單2">
+      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_03.png" alt="菜單3">
+      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_04.png" alt="菜單4">
+      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_05.png" alt="菜單5">
+      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_06.png" alt="菜單6">
+      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_07.png" alt="菜單7">
+      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_08.png" alt="菜單8">
+      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_09.png" alt="菜單9">
+    </div>
+  </div>
+
+  <!-- 4. 订位 -->
   <div class="reserve-section" id="reserve">
     <h3>線上訂位</h3>
     <p>炙烤鮮美，本味相迎，吉松期待與你相遇</p>
     <a href="tel:0225230333">立即預約 | 02-25230333</a>
   </div>
 
-  <!-- 底部联系信息 -->
+  <!-- 5. 底部 -->
   <div class="footer" id="contact">
-    <p>吉松和漢日本料理 YOSHIMATSU WAKAN JAPANESE CUISINE</p>
+    <p>吉松和漢日本料理</p>
     <p>📞 電話：02-25230333</p>
-    <p>📍 地址：10349 台北市中山區中山北路二段50巷15號</p>
-    <p>⏰ 營業時間：11:30–14:00 | 17:00–21:00</p>
+    <p>📍 地址：台北市中山區中山北路二段50巷15號</p>
   </div>
+
 </body>
 </html>

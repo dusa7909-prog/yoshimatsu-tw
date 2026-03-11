@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -76,29 +76,27 @@
     margin: 8px auto;
   }
 
-  /* 環境/料理網格 */
+  /* 環境/料理網格：保證替換照片不亂版 */
   .grid-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
     margin-bottom: 20px;
-    grid-auto-flow: row;
-    grid-auto-rows: 180px;
   }
   .grid-3 img {
     width: 100%;
-    height: 100%;
+    height: 200px;
     object-fit: cover;
     border-radius: 6px;
     cursor: zoom-in;
     transition: transform 0.2s ease;
   }
 
-  /* ✅ 菜單專用：長條垂直 + 每張之間留間隔 + 白色底邊框，看起來是一張一張 */
+  /* 菜單專用：垂直排版+間隔 */
   .menu-list {
     display: flex;
     flex-direction: column;
-    gap: 25px; /* 關鍵：每張菜單之間的間隔 */
+    gap: 25px;
     margin-bottom: 30px;
   }
   .menu-list img {
@@ -106,14 +104,14 @@
     height: auto;
     border-radius: 8px;
     border: 1px solid #eee;
-    background: #fff; /* 白色底，讓每張菜單更獨立 */
-    padding: 8px; /* 內邊距，讓圖片不會貼到邊框 */
+    background: #fff;
+    padding: 8px;
     cursor: zoom-in;
     transition: transform 0.2s ease;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05); /* 輕微陰影，強化「一張紙」的感覺 */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   }
 
-  /* 圖片放大遮罩層 */
+  /* 圖片放大彈窗：手機/電腦都能縮放拖拽 */
   .image-modal {
     position: fixed;
     top: 0;
@@ -126,12 +124,17 @@
     align-items: center;
     z-index: 1000;
     padding: 20px;
+    touch-action: manipulation;
   }
-  .image-modal img {
+  .modal-content {
     max-width: 95%;
     max-height: 95%;
     border-radius: 8px;
-    cursor: zoom-in;
+    cursor: grab;
+    user-select: none;
+  }
+  .modal-content.grabbing {
+    cursor: grabbing;
   }
 
   /* 底部資訊 */
@@ -149,10 +152,12 @@
   @media (max-width: 768px) {
     .grid-3 {
       grid-template-columns: repeat(2, 1fr);
-      grid-auto-rows: 160px;
+    }
+    .grid-3 img {
+      height: 160px;
     }
     .menu-list {
-      gap: 20px; /* 手機端間隔稍微縮小 */
+      gap: 20px;
     }
     .menu-list img {
       padding: 6px;
@@ -169,7 +174,9 @@
   @media (max-width: 480px) {
     .grid-3 {
       grid-template-columns: 1fr;
-      grid-auto-rows: 200px;
+    }
+    .grid-3 img {
+      height: 180px;
     }
     .section-title {
       font-size: 20px;
@@ -187,37 +194,37 @@
   <a href="#contact">聯絡我們</a>
 </header>
 
-<!-- 首屏大圖 -->
+<!-- 首頁：餐廳門口 -->
 <div class="hero" id="home">
-  <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/entrance.png" alt="吉松和漢日本料理">
+  <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/entrance.png" alt="餐廳門口">
 </div>
 
 <div class="container">
-  <!-- 店內環境 -->
+  <!-- 店內環境：完全照你的對照表順序 -->
   <h2 class="section-title" id="env">店內環境</h2>
   <div class="grid-3">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room.png" alt="包廂" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room.png" alt="包廂" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room.png" alt="包廂" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room.png" alt="包廂" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room.png" alt="包廂" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room.png" alt="包廂" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/logo.jpg" alt="商標" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room.png" alt="包廂照片" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room1.png" alt="包廂照片" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/bar.png" alt="吧台照片" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room3.jpg" alt="包廂照片" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room4.jpg" alt="包廂照片" onclick="openModal(this.src)">
   </div>
 
-  <!-- 精選料理 -->
+  <!-- 精選料理：完全照你的對照表順序 -->
   <h2 class="section-title" id="food">精選料理</h2>
   <div class="grid-3">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/otoro.jpg" alt="大腹" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/uni.jpg" alt="海膽" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/sashimi-platter.jpg" alt="生魚片" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/aburi-roll.jpg" alt="炙壽司" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/marrow-soup.jpg" alt="骨髓湯" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/otoro.jpg" alt="黑鮪魚大腹" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/uni.jpg" alt="馬糞海膽" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/sashimi-platter.jpg" alt="綜合刺身拼盤" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/aburi-roll.jpg" alt="炙燒卷" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/marrow-soup.jpg" alt="黑鮪魚骨髓湯" onclick="openModal(this.src)">
     <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/mulletroe.jpg" alt="烏魚子" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/otoro.jpg" alt="大腹" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/uni.jpg" alt="海膽" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/fiah1.png" alt="鮮魚" onclick="openModal(this.src)">
+    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/food1.png" alt="握壽司" onclick="openModal(this.src)">
   </div>
 
-  <!-- ✅ 完整菜單：長條垂直 + 間隔 + 邊框，看起來是一張一張 -->
+  <!-- 菜單：保持你原有的 -->
   <h2 class="section-title" id="menu">完整菜單</h2>
   <div class="menu-list">
     <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_01.png" alt="菜單1" onclick="openModal(this.src)">
@@ -249,24 +256,112 @@
 
 <!-- 圖片放大彈窗 -->
 <div class="image-modal" id="imageModal" onclick="closeModal()">
-  <img id="modalImage" src="" alt="放大查看">
+  <img id="modalImage" class="modal-content" src="" alt="放大查看">
 </div>
 
 <script>
+  let scale = 1;
+  let startX = 0;
+  let startY = 0;
+  let translateX = 0;
+  let translateY = 0;
+  let isDragging = false;
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+
   function openModal(imageSrc) {
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImage');
+    scale = 1;
+    translateX = 0;
+    translateY = 0;
     modal.style.display = 'flex';
     modalImg.src = imageSrc;
+    modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
     document.body.style.overflow = 'hidden';
   }
+
   function closeModal() {
-    const modal = document.getElementById('imageModal');
     modal.style.display = 'none';
     document.body.style.overflow = 'auto';
   }
+
+  // 電腦滾輪縮放
+  modalImg.addEventListener('wheel', function(e) {
+    e.preventDefault();
+    const delta = e.deltaY > 0 ? -0.1 : 0.1;
+    scale = Math.max(0.5, Math.min(3, scale + delta));
+    modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+  });
+
+  // 手機雙指縮放
+  let lastDistance = 0;
+  modalImg.addEventListener('touchstart', function(e) {
+    if (e.touches.length === 2) {
+      lastDistance = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+    } else if (e.touches.length === 1) {
+      isDragging = true;
+      startX = e.touches[0].clientX - translateX;
+      startY = e.touches[0].clientY - translateY;
+    }
+    e.preventDefault();
+  });
+
+  modalImg.addEventListener('touchmove', function(e) {
+    if (e.touches.length === 2) {
+      const currentDistance = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      const delta = (currentDistance - lastDistance) / 1000;
+      scale = Math.max(0.5, Math.min(3, scale + delta));
+      lastDistance = currentDistance;
+      modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    } else if (e.touches.length === 1 && isDragging) {
+      translateX = e.touches[0].clientX - startX;
+      translateY = e.touches[0].clientY - startY;
+      modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    }
+    e.preventDefault();
+  });
+
+  modalImg.addEventListener('touchend', function() {
+    isDragging = false;
+  });
+
+  // 電腦滑鼠拖拽
+  modalImg.addEventListener('mousedown', function(e) {
+    if (e.button === 0) {
+      isDragging = true;
+      startX = e.clientX - translateX;
+      startY = e.clientY - translateY;
+      modalImg.classList.add('grabbing');
+    }
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', function(e) {
+    if (isDragging) {
+      translateX = e.clientX - startX;
+      translateY = e.clientY - startY;
+      modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    }
+  });
+
+  document.addEventListener('mouseup', function() {
+    isDragging = false;
+    modalImg.classList.remove('grabbing');
+  });
+
+  // ESC關閉
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeModal();
+  });
+
+  // 點圖片不關閉
+  modalImg.addEventListener('click', function(e) {
+    e.stopPropagation();
   });
 </script>
 </body>

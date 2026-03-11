@@ -16,7 +16,6 @@
     background: #f8f8f8;
     color: #333;
   }
-  /* 顶部导航栏 */
   nav {
     background: #4a1a1a;
     padding: 15px 0;
@@ -31,7 +30,6 @@
     text-decoration: none;
     font-size: 18px;
   }
-  /* 联系我们按钮（跳转到底部联络区） */
   nav a.btn-contact {
     background: #d4af37;
     color: #000;
@@ -39,7 +37,6 @@
     border-radius: 6px;
     font-weight: bold;
   }
-  /* 大门banner图（完整显示不裁切） */
   .banner {
     width: 100%;
     height: auto;
@@ -49,13 +46,11 @@
     height: auto;
     display: block;
   }
-  /* 中间内容容器 */
   .container {
     max-width: 1000px;
     margin: 0 auto;
     padding: 10px 15px 0 15px;
   }
-  /* 内容区块样式 */
   .section-box {
     background: white;
     padding: 30px;
@@ -70,7 +65,6 @@
     border-bottom: 2px solid #eee;
     font-size: 24px;
   }
-  /* 料理照片网格 */
   .photo-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -84,18 +78,14 @@
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   }
-  /* 菜单图片（每张带8px细间隔） */
   .menu img {
     width: 100%;
-    margin-bottom: 8px;
-    border-radius: 8px;
     display: block;
+    margin-bottom: 8px !important;
   }
-  /* 最后一张菜单图取消底部间隔 */
   .menu img:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
   }
-  /* 底部猪肝色信息区 */
   .bottom-info {
     background: #8c2c2c;
     color: white;
@@ -112,7 +102,6 @@
     font-size: 28px;
     margin-bottom: 15px;
   }
-  /* 带小图标的联络信息 */
   .contact-info {
     text-align:left; 
     display:inline-block;
@@ -122,7 +111,6 @@
   .contact-info div {
     margin-bottom: 8px;
   }
-  /* 二维码区域（电脑/手机都整齐对齐） */
   .qrcode-area {
     margin-top: 25px; 
     display: grid;
@@ -146,7 +134,6 @@
   .qrcode-item div {
     font-size:14px;
   }
-  /* 最底部版权 */
   footer {
     background: #333;
     color: white;
@@ -154,7 +141,6 @@
     padding: 20px 0;
     font-size: 14px;
   }
-  /* 手机端适配 */
   @media (max-width: 768px) {
     .container {
       padding: 10px 15px 0 15px;
@@ -183,90 +169,87 @@
 </head>
 
 <body>
-  <!-- 顶部导航栏 -->
-  <nav>
-    <a href="#home">首頁</a>
-    <a href="#dishes">料理與環境</a>
-    <a href="#menu">菜單</a>
-    <a href="#contact" class="btn-contact">聯繫我們</a>
-  </nav>
 
-  <!-- 大门banner图 -->
-  <div class="banner">
-    <img src="entrance.png" alt="吉松和漢日本料理大门">
+<nav>
+  <a href="#home">首頁</a>
+  <a href="#dishes">料理與環境</a>
+  <a href="#menu">菜單</a>
+  <a href="#contact" class="btn-contact">聯繫我們</a>
+</nav>
+
+<div class="banner">
+  <img src="entrance.png" alt="大門">
+</div>
+
+<div class="container">
+  <div class="section-box" id="home">
+    <h2>歡迎光臨</h2>
+    <p>吉松和漢日本料理堅持使用新鮮食材，提供道地日式風味，讓您在台北也能品嘗到正宗日本料理。</p>
   </div>
 
-  <!-- 中间内容区 -->
-  <div class="container">
-    <div class="section-box" id="home">
-      <h2>歡迎光臨</h2>
-      <p>吉松和漢日本料理堅持使用新鮮食材，提供道地日式風味，讓您在台北也能品嘗到正宗日本料理。</p>
-    </div>
-
-    <div class="section-box" id="dishes">
-      <h2>店內環境與招牌料理</h2>
-      <div class="photo-grid">
-        <img src="private-room.png" alt="包廂環境">
-        <img src="otoro.jpg" alt="大腹生魚片">
-        <img src="uni.jpg" alt="海膽">
-        <img src="sashimi-platter.jpg" alt="綜合生魚片">
-        <img src="aburi-roll.jpg" alt="炙燒壽司卷">
-        <img src="marrow-soup.jpg" alt="骨髓湯">
-        <img src="mulletroe.jpg" alt="烏魚子">
-      </div>
-    </div>
-
-    <div class="section-box" id="menu">
-      <h2>菜單</h2>
-      <div class="menu">
-        <img src="menu_01.png" alt="菜單1">
-        <img src="menu_02.png" alt="菜單2">
-        <img src="menu_03.png" alt="菜單3">
-        <img src="menu_04.png" alt="菜單4">
-        <img src="menu_05.png" alt="菜單5">
-        <img src="menu_06.png" alt="菜單6">
-        <img src="menu_07.png" alt="菜單7">
-        <img src="menu_08.png" alt="菜單8">
-        <img src="menu_09.png" alt="菜單9">
-        <img src="menu_10.png" alt="菜單10">
-        <img src="menu_11.png" alt="菜單11">
-        <img src="menu_12.png" alt="菜單12">
-        <img src="menu_13.png" alt="菜單13">
-        <img src="menu_14.png" alt="菜單14">
-        <img src="menu_15.png" alt="菜單15">
-        <img src="menu_16.png" alt="菜單16">
-      </div>
+  <div class="section-box" id="dishes">
+    <h2>店內環境與招牌料理</h2>
+    <div class="photo-grid">
+      <img src="private-room.png" alt="包廂">
+      <img src="otoro.jpg" alt="大腹">
+      <img src="uni.jpg" alt="海膽">
+      <img src="sashimi-platter.jpg" alt="生魚片">
+      <img src="aburi-roll.jpg" alt="炙壽司">
+      <img src="marrow-soup.jpg" alt="骨髓湯">
+      <img src="mulletroe.jpg" alt="烏魚子">
     </div>
   </div>
 
-  <!-- 底部猪肝色信息区（ID用于联系我们跳转） -->
-  <div class="bottom-info" id="contact">
-    <img src="logo.jpg" alt="吉松和漢日本料理Logo" class="logo">
-    <h1>吉松和漢日本料理</h1>
-    <div class="contact-info">
-      <div>📞 電話：02-25230333</div>
-      <div>📍 地址：10349 台北市中山區中山北路二段50巷15號</div>
-      <div>⏰ 營業時間：11:30–14:00、17:00–21:00</div>
-    </div>
-    <div class="qrcode-area">
-      <div class="qrcode-item">
-        <img src="fb.png" alt="Facebook二维码">
-        <div>Facebook</div>
-      </div>
-      <div class="qrcode-item">
-        <img src="line.png" alt="LINE二维码">
-        <div>LINE</div>
-      </div>
-      <div class="qrcode-item">
-        <img src="ig.png" alt="Instagram二维码">
-        <div>Instagram</div>
-      </div>
+  <div class="section-box" id="menu">
+    <h2>菜單</h2>
+    <div class="menu">
+      <img src="menu_01.png" alt="菜單1">
+      <img src="menu_02.png" alt="菜單2">
+      <img src="menu_03.png" alt="菜單3">
+      <img src="menu_04.png" alt="菜單4">
+      <img src="menu_05.png" alt="菜單5">
+      <img src="menu_06.png" alt="菜單6">
+      <img src="menu_07.png" alt="菜單7">
+      <img src="menu_08.png" alt="菜單8">
+      <img src="menu_09.png" alt="菜單9">
+      <img src="menu_10.png" alt="菜單10">
+      <img src="menu_11.png" alt="菜單11">
+      <img src="menu_12.png" alt="菜單12">
+      <img src="menu_13.png" alt="菜單13">
+      <img src="menu_14.png" alt="菜單14">
+      <img src="menu_15.png" alt="菜單15">
+      <img src="menu_16.png" alt="菜單16">
     </div>
   </div>
+</div>
 
-  <!-- 最底部版权 -->
-  <footer>
-    <p>© 2026 吉松和漢日本料理 版權所有</p>
-  </footer>
+<div class="bottom-info" id="contact">
+  <img src="logo.jpg" alt="Logo" class="logo">
+  <h1>吉松和漢日本料理</h1>
+  <div class="contact-info">
+    <div>📞 電話：02-25230333</div>
+    <div>📍 地址：10349 台北市中山區中山北路二段50巷15號</div>
+    <div>⏰ 營業時間：11:30–14:00、17:00–21:00</div>
+  </div>
+  <div class="qrcode-area">
+    <div class="qrcode-item">
+      <img src="fb.png" alt="FB">
+      <div>Facebook</div>
+    </div>
+    <div class="qrcode-item">
+      <img src="line.png" alt="LINE">
+      <div>LINE</div>
+    </div>
+    <div class="qrcode-item">
+      <img src="ig.png" alt="IG">
+      <div>Instagram</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 吉松和漢日本料理 版權所有</p>
+</footer>
+
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>吉松和漢日本料理 - 道地日式風味</title>
+<title>吉松和漢日本料理</title>
 <style>
   * {
     margin: 0;
@@ -12,206 +12,148 @@
     font-family: "Microsoft JhengHei", sans-serif;
   }
   body {
-    background: #fff;
+    background: #fdfbf8;
     color: #333;
-    line-height: 1.6;
+    line-height: 1.7;
   }
-  /* 导航栏 */
-  .nav-top {
-    width: 100%;
-    background: #000;
-    padding: 12px 20px;
+
+  header {
+    background: #1a1a1a;
+    padding: 14px 0;
     text-align: center;
     position: sticky;
     top: 0;
     z-index: 999;
   }
-  .nav-top a {
+  header a {
     color: #fff;
+    margin: 0 12px;
     text-decoration: none;
-    margin: 0 15px;
     font-size: 15px;
-    letter-spacing: 1px;
   }
-  /* Banner 大图 - 这里已经确认是 entrance.png */
-  .hero-banner {
+
+  .hero {
     width: 100%;
-    height: auto;
+    height: 460px;
+    overflow: hidden;
   }
-  .hero-banner img {
+  .hero img {
     width: 100%;
-    height: auto;
-    display: block;
-  }
-  /* 最新消息板块 */
-  .news-section {
-    background: #fdf9f5;
-    padding: 40px 20px;
-    text-align: center;
-  }
-  .news-section h3 {
-    font-size: 22px;
-    color: #c82829;
-    margin-bottom: 15px;
-    letter-spacing: 2px;
-  }
-  .news-section p {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-  /* 品牌理念 */
-  .brand-section {
-    padding: 60px 20px;
-    max-width: 1000px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .brand-section h2 {
-    font-size: 28px;
-    margin-bottom: 25px;
-    letter-spacing: 3px;
-  }
-  .brand-slogan {
-    font-size: 18px;
-    line-height: 1.8;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-  /* 招牌料理展示 */
-  .food-section {
-    background: #f8f8f8;
-    padding: 60px 20px;
-  }
-  .food-section h2 {
-    text-align: center;
-    font-size: 28px;
-    margin-bottom: 30px;
-    letter-spacing: 3px;
-  }
-  .food-grid {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-  }
-  .food-grid img {
-    width: 100%;
-    height: 200px;
+    height: 100%;
     object-fit: cover;
-    border-radius: 8px;
   }
-  /* 完整菜单板块 */
-  .menu-section {
-    padding: 60px 20px;
-    max-width: 1200px;
+
+  .container {
+    max-width: 1000px;
     margin: 0 auto;
-    text-align: center;
-  }
-  .menu-section h2 {
-    font-size: 28px;
-    margin-bottom: 40px;
-    letter-spacing: 3px;
-  }
-  .menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-  }
-  .menu-grid img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    border: 1px solid #eee;
-  }
-  /* 订位板块 */
-  .reserve-section {
     padding: 40px 20px;
-    text-align: center;
-    background: #000;
-    color: #fff;
   }
-  .reserve-section a {
-    display: inline-block;
-    background: #c82829;
-    color: #fff;
-    padding: 12px 30px;
-    border-radius: 4px;
-    text-decoration: none;
-    margin-top: 20px;
-    font-weight: bold;
-  }
-  /* 底部信息 */
-  .footer {
-    padding: 30px 20px;
+
+  .section-title {
     text-align: center;
-    font-size: 15px;
+    font-size: 24px;
+    color: #a00000;
+    margin: 50px 0 25px;
+  }
+  .section-title::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 2px;
+    background: #a00000;
+    margin: 8px auto;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .grid-3 img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .grid-4 img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+
+  footer {
+    background: #1a1a1a;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 40px;
   }
 </style>
 </head>
+
 <body>
 
-  <div class="nav-top">
-    <a href="#home">首頁</a>
-    <a href="#food">招牌料理</a>
-    <a href="#menu">線上菜單</a>
-    <a href="#reserve">訂位</a>
-    <a href="#contact">資訊</a>
+<header>
+  <a>首頁</a>
+  <a>環境</a>
+  <a>料理</a>
+  <a>菜單</a>
+  <a>聯絡我們</a>
+</header>
+
+<div class="hero">
+  <img src="https://i.imgur.com/TyXyL8Y.jpg" alt="日式餐廳氣氛">
+</div>
+
+<div class="container">
+
+  <h2 class="section-title">店內環境</h2>
+  <div class="grid-3">
+    <img src="https://i.imgur.com/3Fk0vqN.jpg" alt="環境1">
+    <img src="https://i.imgur.com/yA40fQD.jpg" alt="環境2">
+    <img src="https://i.imgur.com/k3tZc1d.jpg" alt="環境3">
+    <img src="https://i.imgur.com/NmUJZJN.jpg" alt="環境4">
+    <img src="https://i.imgur.com/J5tXGdK.jpg" alt="環境5">
+    <img src="https://i.imgur.com/egXdC7s.jpg" alt="環境6">
   </div>
 
-  <!-- 1. 大门图 - 已经确认叫 entrance.png -->
-  <div class="hero-banner" id="home">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/entrance.png" alt="吉松和漢日本料理">
+  <h2 class="section-title">精選料理</h2>
+  <div class="grid-4">
+    <img src="https://i.imgur.com/4a0gBvX.jpg" alt="生魚片">
+    <img src="https://i.imgur.com/3FwxQvG.jpg" alt="壽司">
+    <img src="https://i.imgur.com/IXQfGdH.jpg" alt="炙燒">
+    <img src="https://i.imgur.com/U6dQVYf.jpg" alt="湯品">
+    <img src="https://i.imgur.com/5ZJZ7FQ.jpg" alt="炸物">
+    <img src="https://i.imgur.com/9ZJFQWX.jpg" alt="烤物">
+    <img src="https://i.imgur.com/XJFQWX9.jpg" alt="冷菜">
+    <img src="https://i.imgur.com/JFQWX9Z.jpg" alt="甜點">
   </div>
 
-  <div class="brand-section">
-    <h2>本物の味</h2>
-    <p class="brand-slogan">
-      堅持新鮮食材，道地日式風味，<br>
-      吉松和漢，予你最真實的日本料理體驗。
-    </p>
+  <h2 class="section-title">招牌推薦</h2>
+  <div class="grid-3">
+    <img src="https://i.imgur.com/0kXyL8Y.jpg" alt="特選1">
+    <img src="https://i.imgur.com/1kXyL8Y.jpg" alt="特選2">
+    <img src="https://i.imgur.com/2kXyL8Y.jpg" alt="特選3">
+    <img src="https://i.imgur.com/3kXyL8Y.jpg" alt="特選4">
+    <img src="https://i.imgur.com/4kXyL8Y.jpg" alt="特選5">
+    <img src="https://i.imgur.com/5kXyL8Y.jpg" alt="特選6">
   </div>
 
-  <!-- 2. 招牌料理 (4張) -->
-  <div class="food-section" id="food">
-    <h2>招牌料理</h2>
-    <div class="food-grid">
-      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/otoro.jpg" alt="大腹">
-      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/uni.jpg" alt="海膽">
-      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/sashimi-platter.jpg" alt="生魚片">
-      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/aburi-roll.jpg" alt="炙壽司">
-    </div>
-  </div>
+</div>
 
-  <!-- 3. 完整菜单 (menu_01 到 menu_09) -->
-  <div class="menu-section" id="menu">
-    <h2>完整菜單</h2>
-    <div class="menu-grid">
-      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_01.png" alt="菜單1">
-      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_02.png" alt="菜單2">
-      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_03.png" alt="菜單3">
-      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_04.png" alt="菜單4">
-      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_05.png" alt="菜單5">
-      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_06.png" alt="菜單6">
-      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_07.png" alt="菜單7">
-      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_08.png" alt="菜單8">
-      <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_09.png" alt="菜單9">
-    </div>
-  </div>
-
-  <!-- 4. 订位 -->
-  <div class="reserve-section" id="reserve">
-    <h3>線上訂位</h3>
-    <p>炙烤鮮美，本味相迎，吉松期待與你相遇</p>
-    <a href="tel:0225230333">立即預約 | 02-25230333</a>
-  </div>
-
-  <!-- 5. 底部 -->
-  <div class="footer" id="contact">
-    <p>吉松和漢日本料理</p>
-    <p>📞 電話：02-25230333</p>
-    <p>📍 地址：台北市中山區中山北路二段50巷15號</p>
-  </div>
+<footer>
+  <h3>吉松和漢日本料理</h3>
+  <p>電話：02-25230333</p>
+  <p>地址：台北市中山區中山北路二段50巷15號</p>
+  <p>營業時間：11:30–14:00、17:00–21:00</p>
+</footer>
 
 </body>
 </html>

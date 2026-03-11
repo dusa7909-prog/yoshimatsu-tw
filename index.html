@@ -16,6 +16,8 @@
     background: #f8f8f8;
     color: #333;
   }
+
+  /* 导航 */
   nav {
     background: #4a1a1a;
     padding: 15px 0;
@@ -37,15 +39,33 @@
     border-radius: 6px;
     font-weight: bold;
   }
+
+  /* 大圖 + 中間按鈕 */
   .banner {
+    position: relative;
     width: 100%;
-    height: auto;
   }
   .banner img {
     width: 100%;
     height: auto;
     display: block;
   }
+  .banner-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #8c2c2c;
+    color: #fff;
+    padding: 14px 24px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  /* 內容 */
   .container {
     max-width: 1000px;
     margin: 0 auto;
@@ -65,6 +85,8 @@
     border-bottom: 2px solid #eee;
     font-size: 24px;
   }
+
+  /* 料理照片 */
   .photo-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -78,14 +100,8 @@
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   }
-  .menu img {
-    width: 100%;
-    display: block;
-    margin-bottom: 8px !important;
-  }
-  .menu img:last-child {
-    margin-bottom: 0 !important;
-  }
+
+  /* 底部資訊 */
   .bottom-info {
     background: #8c2c2c;
     color: white;
@@ -98,10 +114,6 @@
     margin: 0 auto 20px;
     display: block;
   }
-  .bottom-info h1 {
-    font-size: 28px;
-    margin-bottom: 15px;
-  }
   .contact-info {
     text-align:left; 
     display:inline-block;
@@ -111,6 +123,8 @@
   .contact-info div {
     margin-bottom: 8px;
   }
+
+  /* 二维码 */
   .qrcode-area {
     margin-top: 25px; 
     display: grid;
@@ -131,9 +145,7 @@
     display: block;
     margin: 0 auto 6px;
   }
-  .qrcode-item div {
-    font-size:14px;
-  }
+
   footer {
     background: #333;
     color: white;
@@ -141,23 +153,13 @@
     padding: 20px 0;
     font-size: 14px;
   }
+
+  /* 手機 */
   @media (max-width: 768px) {
-    .container {
-      padding: 10px 15px 0 15px;
-    }
-    .section-box {
-      margin: 10px 0 20px 0;
-    }
     .photo-grid {
       grid-template-columns: 1fr;
     }
-    nav a {
-      font-size: 16px;
-      margin: 0 8px;
-    }
     .qrcode-area {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
       max-width: 280px;
     }
     .qrcode-item img {
@@ -165,6 +167,60 @@
       height: 80px;
     }
   }
+
+  /* 彈出菜單 (關鍵！你要的滑動翻頁) */
+  .menu-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 1000;
+  }
+  .menu-slider {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 800px;
+    height: 80vh;
+    overflow: hidden;
+  }
+  .menu-slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+  }
+  .menu-slides img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  .prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.3);
+    color: white;
+    padding: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    z-index: 1001;
+  }
+  .prev { left: 10px; }
+  .next { right: 10px; }
 </style>
 </head>
 
@@ -173,12 +229,14 @@
 <nav>
   <a href="#home">首頁</a>
   <a href="#dishes">料理與環境</a>
-  <a href="#menu">菜單</a>
+  <a href="javascript:void(0)" onclick="openMenu()">線上菜單</a>
   <a href="#contact" class="btn-contact">聯繫我們</a>
 </nav>
 
+<!-- 大門照片 + 中間按鈕 -->
 <div class="banner">
   <img src="entrance.png" alt="大門">
+  <a href="javascript:void(0)" onclick="openMenu()" class="banner-btn">線上菜單</a>
 </div>
 
 <div class="container">
@@ -190,41 +248,20 @@
   <div class="section-box" id="dishes">
     <h2>店內環境與招牌料理</h2>
     <div class="photo-grid">
-      <img src="private-room.png" alt="包廂">
-      <img src="otoro.jpg" alt="大腹">
-      <img src="uni.jpg" alt="海膽">
-      <img src="sashimi-platter.jpg" alt="生魚片">
-      <img src="aburi-roll.jpg" alt="炙壽司">
-      <img src="marrow-soup.jpg" alt="骨髓湯">
-      <img src="mulletroe.jpg" alt="烏魚子">
-    </div>
-  </div>
-
-  <div class="section-box" id="menu">
-    <h2>菜單</h2>
-    <div class="menu">
-      <img src="menu_01.png" alt="菜單1">
-      <img src="menu_02.png" alt="菜單2">
-      <img src="menu_03.png" alt="菜單3">
-      <img src="menu_04.png" alt="菜單4">
-      <img src="menu_05.png" alt="菜單5">
-      <img src="menu_06.png" alt="菜單6">
-      <img src="menu_07.png" alt="菜單7">
-      <img src="menu_08.png" alt="菜單8">
-      <img src="menu_09.png" alt="菜單9">
-      <img src="menu_10.png" alt="菜單10">
-      <img src="menu_11.png" alt="菜單11">
-      <img src="menu_12.png" alt="菜單12">
-      <img src="menu_13.png" alt="菜單13">
-      <img src="menu_14.png" alt="菜單14">
-      <img src="menu_15.png" alt="菜單15">
-      <img src="menu_16.png" alt="菜單16">
+      <img src="private-room.png">
+      <img src="otoro.jpg">
+      <img src="uni.jpg">
+      <img src="sashimi-platter.jpg">
+      <img src="aburi-roll.jpg">
+      <img src="marrow-soup.jpg">
+      <img src="mulletroe.jpg">
     </div>
   </div>
 </div>
 
+<!-- 底部 -->
 <div class="bottom-info" id="contact">
-  <img src="logo.jpg" alt="Logo" class="logo">
+  <img src="logo.jpg" class="logo">
   <h1>吉松和漢日本料理</h1>
   <div class="contact-info">
     <div>📞 電話：02-25230333</div>
@@ -232,24 +269,64 @@
     <div>⏰ 營業時間：11:30–14:00、17:00–21:00</div>
   </div>
   <div class="qrcode-area">
-    <div class="qrcode-item">
-      <img src="fb.png" alt="FB">
-      <div>Facebook</div>
-    </div>
-    <div class="qrcode-item">
-      <img src="line.png" alt="LINE">
-      <div>LINE</div>
-    </div>
-    <div class="qrcode-item">
-      <img src="ig.png" alt="IG">
-      <div>Instagram</div>
-    </div>
+    <div class="qrcode-item"><img src="fb.png"><div>Facebook</div></div>
+    <div class="qrcode-item"><img src="line.png"><div>LINE</div></div>
+    <div class="qrcode-item"><img src="ig.png"><div>Instagram</div></div>
   </div>
 </div>
 
 <footer>
   <p>© 2026 吉松和漢日本料理 版權所有</p>
 </footer>
+
+<!-- 菜單彈窗 + 滑動翻頁 -->
+<div class="menu-modal" id="menuModal">
+  <div class="close-btn" onclick="closeMenu()">×</div>
+  <button class="prev" onclick="prevSlide()">‹</button>
+  <button class="next" onclick="nextSlide()">›</button>
+  <div class="menu-slider">
+    <div class="menu-slides" id="menuSlides">
+      <img src="menu_01.png">
+      <img src="menu_02.png">
+      <img src="menu_03.png">
+      <img src="menu_04.png">
+      <img src="menu_05.png">
+      <img src="menu_06.png">
+      <img src="menu_07.png">
+      <img src="menu_08.png">
+      <img src="menu_09.png">
+      <img src="menu_10.png">
+      <img src="menu_11.png">
+      <img src="menu_12.png">
+      <img src="menu_13.png">
+      <img src="menu_14.png">
+      <img src="menu_15.png">
+      <img src="menu_16.png">
+    </div>
+  </div>
+</div>
+
+<script>
+  let current = 0;
+  const total = 16;
+
+  function openMenu() {
+    document.getElementById("menuModal").style.display = "block";
+  }
+  function closeMenu() {
+    document.getElementById("menuModal").style.display = "none";
+  }
+  function updateSlide() {
+    const width = 100;
+    document.getElementById("menuSlides").style.transform = `translateX(-${current * width}%)`;
+  }
+  function prevSlide() {
+    if (current > 0) { current--; updateSlide(); }
+  }
+  function nextSlide() {
+    if (current < total-1) { current++; updateSlide(); }
+  }
+</script>
 
 </body>
 </html>

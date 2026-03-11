@@ -41,7 +41,7 @@
     font-size: 13px;
   }
 
-  /* 大圖 */
+  /* 大图（关键：不裁切、不變形） */
   .banner {
     width: 100%;
   }
@@ -49,6 +49,7 @@
     width: 100%;
     height: auto;
     display: block;
+    object-fit: contain; /* 关键：不裁切老板娘头 */
   }
 
   /* 內容 */
@@ -70,7 +71,7 @@
     font-size: 20px;
   }
 
-  /* 照片 */
+  /* 料理照片网格：完全不裁切 */
   .photo-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -78,8 +79,8 @@
   }
   .photo-grid img {
     width: 100%;
-    height: 180px;
-    object-fit: cover;
+    height: 220px; /* 固定高度 */
+    object-fit: cover; /* 保持比例、不拉伸 */
     border-radius: 10px;
   }
 
@@ -134,6 +135,9 @@
     }
     .qrcode-area {
       gap: 10px;
+    }
+    .photo-grid img {
+      height: 180px;
     }
   }
 
@@ -191,8 +195,9 @@
   <a href="#contact" class="btn-contact">聯繫我們</a>
 </nav>
 
+<!-- 大门图（替换成你自己的图） -->
 <div class="banner">
-  <img src="entrance.png" alt="大門">
+  <img src="entrance.jpg" alt="大門">
 </div>
 
 <div class="container">
@@ -204,19 +209,20 @@
   <div class="section-box" id="dishes">
     <h2>店內環境與招牌料理</h2>
     <div class="photo-grid">
-      <img src="private-room.png">
-      <img src="otoro.jpg">
-      <img src="uni.jpg">
-      <img src="sashimi-platter.jpg">
-      <img src="aburi-roll.jpg">
-      <img src="marrow-soup.jpg">
-      <img src="mulletroe.jpg">
+      <!-- 你上传的照片已经全部对应填好 -->
+      <img src="private-room.jpg" alt="包廂">
+      <img src="otoro.jpg" alt="大腹生魚片">
+      <img src="uni.jpg" alt="海膽">
+      <img src="sashimi-platter.jpg" alt="生魚片">
+      <img src="aburi-roll.jpg" alt="炙壽司">
+      <img src="marrow-soup.jpg" alt="骨髓湯">
+      <img src="mulletroe.jpg" alt="烏魚子">
     </div>
   </div>
 </div>
 
 <div class="bottom-info" id="contact">
-  <img src="logo.jpg" class="logo">
+  <img src="logo.jpg" class="logo" alt="Logo">
   <h1>吉松和漢日本料理</h1>
   <div class="contact-info">
     <div>📞 電話：02-25230333</div>
@@ -244,28 +250,29 @@
   <p>© 2026 吉松和漢日本料理 版權所有</p>
 </footer>
 
+<!-- 菜单弹窗 -->
 <div class="menu-modal" id="menuModal">
   <div class="close-btn" onclick="closeMenu()">×</div>
   <button class="prev" onclick="prevSlide()">‹</button>
   <button class="next" onclick="nextSlide()">›</button>
   <div class="menu-slider">
     <div class="menu-slides" id="menuSlides">
-      <img src="menu_01.png">
-      <img src="menu_02.png">
-      <img src="menu_03.png">
-      <img src="menu_04.png">
-      <img src="menu_05.png">
-      <img src="menu_06.png">
-      <img src="menu_07.png">
-      <img src="menu_08.png">
-      <img src="menu_09.png">
-      <img src="menu_10.png">
-      <img src="menu_11.png">
-      <img src="menu_12.png">
-      <img src="menu_13.png">
-      <img src="menu_14.png">
-      <img src="menu_15.png">
-      <img src="menu_16.png">
+      <img src="menu_01.jpg">
+      <img src="menu_02.jpg">
+      <img src="menu_03.jpg">
+      <img src="menu_04.jpg">
+      <img src="menu_05.jpg">
+      <img src="menu_06.jpg">
+      <img src="menu_07.jpg">
+      <img src="menu_08.jpg">
+      <img src="menu_09.jpg">
+      <img src="menu_10.jpg">
+      <img src="menu_11.jpg">
+      <img src="menu_12.jpg">
+      <img src="menu_13.jpg">
+      <img src="menu_14.jpg">
+      <img src="menu_15.jpg">
+      <img src="menu_16.jpg">
     </div>
   </div>
 </div>

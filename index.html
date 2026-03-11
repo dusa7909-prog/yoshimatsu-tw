@@ -1,273 +1,338 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<title>吉松和漢日本料理</title>
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Microsoft JhengHei", sans-serif;
-  }
-  body {
-    background: #fdfbf8;
-    color: #333;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
+    <meta charset="UTF-8">
+    <!-- 关键1：移动端视口适配，解决手机端样式错乱 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>日本料理店 - 菜单展示</title>
+    <style>
+        /* 基础样式 - 重置默认样式，避免浏览器差异 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  /* 頂部導覽 */
-  header {
-    background: #1a1a1a;
-    padding: 14px 0;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    width: 100%;
-  }
-  header a {
-    color: #fff;
-    margin: 0 10px;
-    text-decoration: none;
-    font-size: 14px;
-    padding: 4px 8px;
-    display: inline-block;
-  }
+        .menu-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            /* 兼容老旧浏览器不支持grid的情况 */
+            display: -webkit-grid;
+            -webkit-grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
 
-  /* 首屏大圖 */
-  .hero {
-    width: 100%;
-    height: auto;
-    max-height: 460px;
-    overflow: hidden;
-  }
-  .hero img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+        .menu-item {
+            cursor: zoom-in;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            /* 兼容移动端点击高亮 */
+            -webkit-tap-highlight-color: transparent;
+        }
 
-  /* 內容容器 */
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 20px 15px;
-  }
+        .menu-item:hover {
+            transform: scale(1.02);
+            /* 兼容老版webkit内核 */
+            -webkit-transform: scale(1.02);
+        }
 
-  /* 標題樣式 */
-  .section-title {
-    text-align: center;
-    font-size: 22px;
-    color: #a00000;
-    margin: 30px 0 20px;
-  }
-  .section-title::after {
-    content: "";
-    display: block;
-    width: 40px;
-    height: 2px;
-    background: #a00000;
-    margin: 8px auto;
-  }
+        .menu-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            /* 防止图片模糊 */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
 
-  /* 環境/料理網格 */
-  .grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-bottom: 20px;
-    grid-auto-flow: row;
-    grid-auto-rows: 180px;
-  }
-  .grid-3 img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 6px;
-    cursor: zoom-in;
-    transition: transform 0.2s ease;
-  }
+        /* 图片预览弹窗样式 - 兼容不同浏览器的定位 */
+        .image-preview {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            cursor: zoom-out;
+            /* 兼容flex布局的老浏览器 */
+            display: -webkit-flex;
+            -webkit-align-items: center;
+            -webkit-justify-content: center;
+        }
 
-  /* ✅ 菜單專用：長條垂直 + 每張之間留間隔 + 白色底邊框，看起來是一張一張 */
-  .menu-list {
-    display: flex;
-    flex-direction: column;
-    gap: 25px; /* 關鍵：每張菜單之間的間隔 */
-    margin-bottom: 30px;
-  }
-  .menu-list img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    border: 1px solid #eee;
-    background: #fff; /* 白色底，讓每張菜單更獨立 */
-    padding: 8px; /* 內邊距，讓圖片不會貼到邊框 */
-    cursor: zoom-in;
-    transition: transform 0.2s ease;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05); /* 輕微陰影，強化「一張紙」的感覺 */
-  }
+        .preview-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            overflow: hidden;
+            /* 防止移动端点击穿透 */
+            pointer-events: auto;
+        }
 
-  /* 圖片放大遮罩層 */
-  .image-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.9);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    padding: 20px;
-  }
-  .image-modal img {
-    max-width: 95%;
-    max-height: 95%;
-    border-radius: 8px;
-    cursor: zoom-in;
-  }
+        .preview-img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            transition: transform 0.2s;
+            cursor: move;
+            /* 兼容老版transform */
+            -webkit-transition: -webkit-transform 0.2s;
+        }
 
-  /* 底部資訊 */
-  footer {
-    background: #1a1a1a;
-    color: white;
-    text-align: center;
-    padding: 30px 15px;
-    margin-top: 20px;
-    font-size: 14px;
-    line-height: 1.8;
-  }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10;
+            /* 兼容移动端点击 */
+            -webkit-tap-highlight-color: transparent;
+        }
 
-  /* 手機端適配 */
-  @media (max-width: 768px) {
-    .grid-3 {
-      grid-template-columns: repeat(2, 1fr);
-      grid-auto-rows: 160px;
-    }
-    .menu-list {
-      gap: 20px; /* 手機端間隔稍微縮小 */
-    }
-    .menu-list img {
-      padding: 6px;
-    }
-    .hero {
-      max-height: 280px;
-    }
-    header a {
-      margin: 0 6px;
-      font-size: 13px;
-    }
-  }
+        .zoom-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+            color: white;
+            font-size: 14px;
+            opacity: 0.7;
+        }
 
-  @media (max-width: 480px) {
-    .grid-3 {
-      grid-template-columns: 1fr;
-      grid-auto-rows: 200px;
-    }
-    .section-title {
-      font-size: 20px;
-    }
-  }
-</style>
+        /* 适配小屏手机 */
+        @media (max-width: 480px) {
+            .menu-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                -webkit-grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            .close-btn {
+                font-size: 24px;
+                top: 15px;
+                right: 15px;
+            }
+            .zoom-hint {
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-<header>
-  <a href="#home">首頁</a>
-  <a href="#env">環境</a>
-  <a href="#food">料理</a>
-  <a href="#menu">菜單</a>
-  <a href="#contact">聯絡我們</a>
-</header>
+    <div class="menu-gallery">
+        <div class="menu-item">
+            <img src="仓库里的菜单1路径.jpg" alt="料理菜单1" data-img="仓库里的菜单1路径.jpg">
+        </div>
+        <div class="menu-item">
+            <img src="仓库里的菜单2路径.png" alt="料理菜单2" data-img="仓库里的菜单2路径.png">
+        </div>
+        <div class="menu-item">
+            <img src="仓库里的菜单3路径.jpg" alt="料理菜单3" data-img="仓库里的菜单3路径.jpg">
+        </div>
+    </div>
 
-<!-- 首屏大圖 -->
-<div class="hero" id="home">
-  <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/entrance.png" alt="吉松和漢日本料理">
-</div>
+    <div class="image-preview" id="imagePreview">
+        <span class="close-btn" id="closeBtn">&times;</span>
+        <div class="preview-content" id="previewContent">
+            <img src="" alt="预览图片" class="preview-img" id="previewImg">
+        </div>
+        <div class="zoom-hint">
+            <!-- 关键2：根据设备显示不同提示文字 -->
+            <span id="hintText">滚轮缩放 / 拖拽移动</span>
+        </div>
+    </div>
 
-<div class="container">
-  <!-- 店內環境 -->
-  <h2 class="section-title" id="env">店內環境</h2>
-  <div class="grid-3">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room.png" alt="包廂" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room.png" alt="包廂" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room.png" alt="包廂" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room.png" alt="包廂" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room.png" alt="包廂" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/private-room.png" alt="包廂" onclick="openModal(this.src)">
-  </div>
+    <script>
+        // 获取元素
+        const menuItems = document.querySelectorAll('.menu-item');
+        const imagePreview = document.getElementById('imagePreview');
+        const previewImg = document.getElementById('previewImg');
+        const closeBtn = document.getElementById('closeBtn');
+        const previewContent = document.getElementById('previewContent');
+        const hintText = document.getElementById('hintText');
 
-  <!-- 精選料理 -->
-  <h2 class="section-title" id="food">精選料理</h2>
-  <div class="grid-3">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/otoro.jpg" alt="大腹" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/uni.jpg" alt="海膽" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/sashimi-platter.jpg" alt="生魚片" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/aburi-roll.jpg" alt="炙壽司" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/marrow-soup.jpg" alt="骨髓湯" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/mulletroe.jpg" alt="烏魚子" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/otoro.jpg" alt="大腹" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/uni.jpg" alt="海膽" onclick="openModal(this.src)">
-  </div>
+        // 缩放和拖拽相关变量
+        let scale = 1;
+        let isDragging = false;
+        let startX, startY;
+        let translateX = 0, translateY = 0;
+        // 关键3：检测设备类型（移动端/PC端）
+        const isMobile = /iPhone|iPad|iPod|Android|Windows Phone|BlackBerry/i.test(navigator.userAgent);
 
-  <!-- ✅ 完整菜單：長條垂直 + 間隔 + 邊框，看起來是一張一張 -->
-  <h2 class="section-title" id="menu">完整菜單</h2>
-  <div class="menu-list">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_01.png" alt="菜單1" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_02.png" alt="菜單2" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_03.png" alt="菜單3" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_04.png" alt="菜單4" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_05.png" alt="菜單5" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_06.png" alt="菜單6" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_07.png" alt="菜單7" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_08.png" alt="菜單8" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_09.png" alt="菜單9" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_10.png" alt="菜單10" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_11.png" alt="菜單11" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_12.png" alt="菜單12" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_13.png" alt="菜單13" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_14.png" alt="菜單14" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_15.png" alt="菜單15" onclick="openModal(this.src)">
-    <img src="https://dusa7909-prog.github.io/yoshimatsu-tw/menu_16.png" alt="菜單16" onclick="openModal(this.src)">
-  </div>
-</div>
+        // 初始化：根据设备切换提示文字
+        if (isMobile) {
+            hintText.textContent = "双指缩放 / 拖拽移动";
+            previewImg.style.cursor = 'grab';
+        }
 
-<!-- 聯絡資訊 -->
-<footer id="contact">
-  <h3>吉松和漢日本料理</h3>
-  <p>電話：02-25230333</p>
-  <p>地址：台北市中山區中山北路二段50巷15號</p>
-  <p>營業時間：11:30–14:00、17:00–21:00</p>
-</footer>
+        // 1. 点击/触摸打开预览（兼容移动端触摸事件）
+        menuItems.forEach(item => {
+            // PC端点击
+            item.addEventListener('click', handleItemClick);
+            // 移动端触摸（防止点击延迟）
+            item.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                handleItemClick(e);
+            }, { passive: false });
+        });
 
-<!-- 圖片放大彈窗 -->
-<div class="image-modal" id="imageModal" onclick="closeModal()">
-  <img id="modalImage" src="" alt="放大查看">
-</div>
+        function handleItemClick(e) {
+            e.stopPropagation();
+            const imgSrc = e.currentTarget.querySelector('img').dataset.img;
+            previewImg.src = imgSrc;
+            
+            // 重置缩放和偏移
+            scale = 1;
+            translateX = 0;
+            translateY = 0;
+            updateImageTransform();
+            
+            imagePreview.style.display = isMobile ? '-webkit-flex' : 'flex';
+            document.body.style.overflow = 'hidden';
+            // 移动端禁止页面滚动
+            document.body.style.touchAction = 'none';
+        }
 
-<script>
-  function openModal(imageSrc) {
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImage');
-    modal.style.display = 'flex';
-    modalImg.src = imageSrc;
-    document.body.style.overflow = 'hidden';
-  }
-  function closeModal() {
-    const modal = document.getElementById('imageModal');
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-  }
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeModal();
-  });
-</script>
+        // 2. 关闭预览（兼容多端）
+        function closePreview() {
+            imagePreview.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            document.body.style.touchAction = 'auto'; // 恢复移动端滚动
+        }
+
+        // PC端关闭
+        closeBtn.addEventListener('click', closePreview);
+        imagePreview.addEventListener('click', (e) => {
+            if (e.target === imagePreview) closePreview();
+        });
+        // 移动端触摸关闭
+        closeBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            closePreview();
+        }, { passive: false });
+        // ESC键关闭（仅PC端）
+        document.addEventListener('keydown', (e) => {
+            if (!isMobile && e.key === 'Escape' && imagePreview.style.display !== 'none') {
+                closePreview();
+            }
+        });
+
+        // 3. 缩放功能（兼容PC滚轮 + 移动端双指缩放）
+        // PC端滚轮缩放
+        if (!isMobile) {
+            previewContent.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY > 0 ? -0.1 : 0.1;
+                scale = Math.min(Math.max(0.5, scale + delta), 3);
+                updateImageTransform();
+            }, { passive: false });
+        } else {
+            // 移动端双指缩放
+            let lastDistance = 0;
+            previewContent.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 2) {
+                    // 计算双指初始距离
+                    lastDistance = getDistance(e.touches[0], e.touches[1]);
+                }
+            }, { passive: true });
+
+            previewContent.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                if (e.touches.length === 2) {
+                    // 计算双指当前距离
+                    const currentDistance = getDistance(e.touches[0], e.touches[1]);
+                    // 计算缩放比例
+                    const scaleDelta = (currentDistance - lastDistance) / 100;
+                    scale = Math.min(Math.max(0.5, scale + scaleDelta), 3);
+                    lastDistance = currentDistance;
+                    updateImageTransform();
+                } else if (e.touches.length === 1 && isDragging) {
+                    // 单指拖拽
+                    translateX = e.touches[0].clientX - startX;
+                    translateY = e.touches[0].clientY - startY;
+                    updateImageTransform();
+                }
+            }, { passive: false });
+        }
+
+        // 4. 拖拽功能（兼容PC鼠标 + 移动端触摸）
+        // 开始拖拽（PC+移动端）
+        previewImg.addEventListener('mousedown', startDrag);
+        previewImg.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            startDrag(e);
+        }, { passive: false });
+
+        // 拖拽中（PC+移动端）
+        document.addEventListener('mousemove', dragMove);
+        document.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            dragMove(e);
+        }, { passive: false });
+
+        // 结束拖拽（PC+移动端）
+        document.addEventListener('mouseup', endDrag);
+        document.addEventListener('touchend', endDrag, { passive: true });
+
+        function startDrag(e) {
+            isDragging = true;
+            // 区分鼠标和触摸事件的坐标
+            const clientX = isMobile ? e.touches[0].clientX : e.clientX;
+            const clientY = isMobile ? e.touches[0].clientY : e.clientY;
+            startX = clientX - translateX;
+            startY = clientY - translateY;
+            previewImg.style.cursor = isMobile ? 'grabbing' : 'grabbing';
+        }
+
+        function dragMove(e) {
+            if (!isDragging) return;
+            const clientX = isMobile ? (e.touches ? e.touches[0].clientX : 0) : e.clientX;
+            const clientY = isMobile ? (e.touches ? e.touches[0].clientY : 0) : e.clientY;
+            translateX = clientX - startX;
+            translateY = clientY - startY;
+            updateImageTransform();
+        }
+
+        function endDrag() {
+            isDragging = false;
+            previewImg.style.cursor = isMobile ? 'grab' : 'move';
+        }
+
+        // 辅助函数：计算双指距离（移动端缩放用）
+        function getDistance(touch1, touch2) {
+            const x = touch2.clientX - touch1.clientX;
+            const y = touch2.clientY - touch1.clientY;
+            return Math.sqrt(x * x + y * y);
+        }
+
+        // 辅助函数：更新图片变换（兼容老版浏览器）
+        function updateImageTransform() {
+            if (isMobile) {
+                previewImg.style.webkitTransform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+            } else {
+                previewImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+            }
+        }
+
+        // 关键4：降级处理 - 如果浏览器不支持transform，禁用缩放拖拽，仅保留预览
+        if (!('transform' in document.documentElement.style) && !('-webkit-transform' in document.documentElement.style)) {
+            // 隐藏缩放提示
+            hintText.style.display = 'none';
+            // 禁用拖拽和缩放
+            previewImg.style.cursor = 'default';
+            // 提示用户仅可预览
+            alert('你的浏览器版本较低，仅支持图片预览，暂不支持缩放和拖拽功能');
+        }
+    </script>
 </body>
 </html>
